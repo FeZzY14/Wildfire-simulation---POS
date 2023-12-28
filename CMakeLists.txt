@@ -5,6 +5,9 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(SemPraca2 main.cpp
         PoziarnyBiotop.h
-        Bunka.cpp
         Bunka.h
+        Bunka.cpp
+        Svet.h
+        Svet.cpp
         Generator.h)
+

@@ -1,6 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/SemPraca2.dir/main.cpp.o"
-  "SemPraca2"
+  "CMakeFiles/SemPraca2.dir/main.cpp.obj"
+  "CMakeFiles/SemPraca2.dir/main.cpp.obj.d"
+  "SemPraca2.exe"
+  "SemPraca2.exe.manifest"
+  "SemPraca2.lib"
   "SemPraca2.pdb"
 )
 

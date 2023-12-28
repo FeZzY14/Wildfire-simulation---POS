@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/SemPraca2.dir/Bunka.cpp.obj"
   "CMakeFiles/SemPraca2.dir/Bunka.cpp.obj.d"
+  "CMakeFiles/SemPraca2.dir/Svet.cpp.obj"
+  "CMakeFiles/SemPraca2.dir/Svet.cpp.obj.d"
   "CMakeFiles/SemPraca2.dir/main.cpp.obj"
   "CMakeFiles/SemPraca2.dir/main.cpp.obj.d"
   "SemPraca2.exe"

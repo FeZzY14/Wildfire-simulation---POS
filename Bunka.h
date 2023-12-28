@@ -13,6 +13,7 @@ private:
     PoziarBiotop biotop;
     char znak;
 public:
+    Bunka();
     Bunka(int x, int y, PoziarBiotop biotop);
     int getX();
     int getY();

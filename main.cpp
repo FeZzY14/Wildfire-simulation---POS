@@ -1,15 +1,13 @@
 #include <iostream>
 #include "PoziarnyBiotop.h"
 #include "Bunka.h"
+#include "Svet.h"
 
 int main() {
-    for (int i = 0; i < 10; ++i) {
-        for (int j = 0; j < 10; ++j) {
-             Bunka bunka = Bunka(0, 0, PoziarBiotop::Voda);
-             std::cout << bunka.getZnak() << " ";
-        }
-        std::cout << "\n";
+    Svet svet = Svet(10, 10);
+    svet.vytvorSvet();
+    svet.vytvorPoziarRandomPosition();
+    svet.vypisSvet();
 
-    }
     return 0;
 }

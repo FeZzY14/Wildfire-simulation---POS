@@ -20,6 +20,6 @@ CMake Deprecation Warning:
 -- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/bin/Hostx64/x64/cl.exe - skipped
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
--- Configuring done (3.8s)
--- Generating done (0.2s)
+-- Configuring done (4.5s)
+-- Generating done (0.0s)
 -- Build files have been written to: C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/cmake-build-debug

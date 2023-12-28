@@ -108,6 +108,7 @@ CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files (x86)\Windows Kits\10\i
 CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\clocale"
 CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\locale.h"
 CMakeFiles\SemPraca2.dir\main.cpp.obj: C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\PoziarnyBiotop.h
+CMakeFiles\SemPraca2.dir\main.cpp.obj: C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\Bunka.h
 
 
 
@@ -324,3 +325,5 @@ C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\main.cpp:
 "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\locale.h":
 
 C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\PoziarnyBiotop.h:
+
+C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\Bunka.h:

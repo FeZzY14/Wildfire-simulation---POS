@@ -92,6 +92,9 @@
 		<Unit filename="C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/Bunka.h">
 			<Option target="SemPraca2"/>
 		</Unit>
+		<Unit filename="C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/Generator.h">
+			<Option target="SemPraca2"/>
+		</Unit>
 		<Unit filename="C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/PoziarnyBiotop.h">
 			<Option target="SemPraca2"/>
 		</Unit>

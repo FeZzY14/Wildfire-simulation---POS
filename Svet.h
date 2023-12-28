@@ -8,12 +8,14 @@
 #include "Bunka.h"
 #include <vector>
 #include <cstdlib>
+#include "Generator.h"
 
 class Svet {
 private:
     int sirka;
     int vyska;
     std::vector<std::vector<Bunka>> bunky;
+    Generator generator;
 public:
     Svet(int sirka, int vyska);
     void vytvorSvet();

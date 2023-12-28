@@ -14,22 +14,22 @@ Svet::Svet(int sirka, int vyska) {
 void Svet::vytvorSvet() {
     for (int i = 0; i < this->vyska; i++) {
         for (int j = 0; j < this->sirka; j++) {
-            PoziarBiotop biotop = static_cast<PoziarBiotop>(rand() % 4);
+            PoziarBiotop biotop = static_cast<PoziarBiotop>(this->generator.dajNahodnyBiotop());
             bunky[i][j] = Bunka(i, j, biotop);
         }
     }
 }
 
 void Svet::vytvorPoziarRandomPosition() {
-    int x = rand() % this->vyska;
-    int y = rand() % this->sirka;
+    int x = this->generator.dajNahodnyPoziar(this->vyska);
+    int y = this->generator.dajNahodnyPoziar(this->sirka);
     this->bunky[x][y].setBiotop(PoziarBiotop::Poziar);
 }
 
 void Svet::vypisSvet() {
     for (int i = 0; i < this->vyska; ++i) {
         for (int j = 0; j < this->sirka; ++j) {
-            std::cout << this->bunky[i][j].getZnak();
+            std::cout << this->bunky[i][j].getZnak() << " ";
         }
         std::cout << std::endl;
     }

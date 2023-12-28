@@ -82,12 +82,26 @@ CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files (x86)\Windows Kits\10\i
 CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\corecrt_memory.h"
 CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xpolymorphic_allocator.h"
 CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\tuple"
-CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\iostream"
-CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\istream"
-CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\ostream"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\Generator.h
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\random"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\__msvc_int128.hpp"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\intrin.h"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\setjmp.h"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\immintrin.h"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\wmmintrin.h"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\nmmintrin.h"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\smmintrin.h"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\tmmintrin.h"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\pmmintrin.h"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\emmintrin.h"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xmmintrin.h"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\mmintrin.h"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\zmmintrin.h"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\ammintrin.h"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\algorithm"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\cmath"
 CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\ios"
 CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xlocnum"
-CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\cmath"
 CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\iterator"
 CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\iosfwd"
 CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\streambuf"
@@ -116,6 +130,10 @@ CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio
 CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\ctype.h"
 CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\clocale"
 CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\locale.h"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xbit_ops.h"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\iostream"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\istream"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\ostream"
 
 
 CMakeFiles\SemPraca2.dir\main.cpp.obj: C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\main.cpp
@@ -228,6 +246,24 @@ CMakeFiles\SemPraca2.dir\main.cpp.obj: C:\Users\spotk\Desktop\FRI\5.semester\PoS
 CMakeFiles\SemPraca2.dir\main.cpp.obj: C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\Bunka.h
 CMakeFiles\SemPraca2.dir\main.cpp.obj: C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\Svet.h
 CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\vector"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\Generator.h
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\random"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\__msvc_int128.hpp"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\intrin.h"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\setjmp.h"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\immintrin.h"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\wmmintrin.h"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\nmmintrin.h"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\smmintrin.h"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\tmmintrin.h"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\pmmintrin.h"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\emmintrin.h"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xmmintrin.h"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\mmintrin.h"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\zmmintrin.h"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\ammintrin.h"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\algorithm"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xbit_ops.h"
 
 
 
@@ -286,6 +322,8 @@ C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\PoziarnyBiot
 "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xtr1common":
 
 "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\stdlib.h":
+
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\emmintrin.h":
 
 "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\stdio.h":
 
@@ -357,6 +395,8 @@ C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\PoziarnyBiot
 
 "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\streambuf":
 
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\random":
+
 "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\cstddef":
 
 "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\yvals.h":
@@ -393,15 +433,39 @@ C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\PoziarnyBiot
 
 "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\tuple":
 
-"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\iostream":
+C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\Generator.h:
 
-"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\istream":
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\__msvc_int128.hpp":
 
-"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\ostream":
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\intrin.h":
 
-"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xlocnum":
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\setjmp.h":
+
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\immintrin.h":
+
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\wmmintrin.h":
+
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\nmmintrin.h":
+
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\smmintrin.h":
+
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\tmmintrin.h":
+
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\pmmintrin.h":
+
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xmmintrin.h":
+
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\mmintrin.h":
+
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\zmmintrin.h":
+
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\ammintrin.h":
+
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\algorithm":
 
 "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\cmath":
+
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xlocnum":
 
 "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\iterator":
 
@@ -452,5 +516,13 @@ C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\PoziarnyBiot
 "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\clocale":
 
 "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\locale.h":
+
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xbit_ops.h":
+
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\iostream":
+
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\istream":
+
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\ostream":
 
 C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\main.cpp:

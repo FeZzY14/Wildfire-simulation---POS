@@ -107,3 +107,21 @@ C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/PoziarnyBiot
 C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/Bunka.h
 C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/Svet.h
 C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/vector
+C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/Generator.h
+C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/random
+C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/__msvc_int128.hpp
+C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/intrin.h
+C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/setjmp.h
+C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/immintrin.h
+C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/wmmintrin.h
+C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/nmmintrin.h
+C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/smmintrin.h
+C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/tmmintrin.h
+C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/pmmintrin.h
+C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/emmintrin.h
+C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/xmmintrin.h
+C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/mmintrin.h
+C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/zmmintrin.h
+C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/ammintrin.h
+C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/algorithm
+C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/xbit_ops.h

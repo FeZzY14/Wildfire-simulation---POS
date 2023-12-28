@@ -83,12 +83,26 @@ CMakeFiles/SemPraca2.dir/Svet.cpp.obj
  C:/Program Files (x86)/Windows Kits/10/include/10.0.19041.0/ucrt/corecrt_memory.h
  C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/xpolymorphic_allocator.h
  C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/tuple
- C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/iostream
- C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/istream
- C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/ostream
+ C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/Generator.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/random
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/__msvc_int128.hpp
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/intrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/setjmp.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/immintrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/wmmintrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/nmmintrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/smmintrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/tmmintrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/pmmintrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/emmintrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/xmmintrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/mmintrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/zmmintrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/ammintrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/algorithm
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/cmath
  C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/ios
  C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/xlocnum
- C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/cmath
  C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/iterator
  C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/iosfwd
  C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/streambuf
@@ -117,6 +131,10 @@ CMakeFiles/SemPraca2.dir/Svet.cpp.obj
  C:/Program Files (x86)/Windows Kits/10/include/10.0.19041.0/ucrt/ctype.h
  C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/clocale
  C:/Program Files (x86)/Windows Kits/10/include/10.0.19041.0/ucrt/locale.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/xbit_ops.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/iostream
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/istream
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/ostream
 
 CMakeFiles/SemPraca2.dir/main.cpp.obj
  C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/main.cpp
@@ -229,4 +247,22 @@ CMakeFiles/SemPraca2.dir/main.cpp.obj
  C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/Bunka.h
  C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/Svet.h
  C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/vector
+ C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/Generator.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/random
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/__msvc_int128.hpp
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/intrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/setjmp.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/immintrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/wmmintrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/nmmintrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/smmintrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/tmmintrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/pmmintrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/emmintrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/xmmintrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/mmintrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/zmmintrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/ammintrin.h
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/algorithm
+ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/xbit_ops.h
 

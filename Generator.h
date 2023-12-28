@@ -21,6 +21,15 @@ public:
         PoziarBiotop biotop = vsetky[dis(gen)];
         return biotop;
     }
+
+    int dajNahodnyPoziar(int rozmer) {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<size_t> dis(0, rozmer - 1);
+        int nahoda = dis(gen);
+        return nahoda;
+
+    }
 };
 
 #endif //SEMPRACA2_GENERATOR_H

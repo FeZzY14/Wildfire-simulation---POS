@@ -42,10 +42,10 @@ RM = "C:\Program Files\JetBrains\CLion 2023.3\bin\cmake\win\x64\bin\cmake.exe" -
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS
+CMAKE_SOURCE_DIR = C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles\SemPraca2.dir\depend.make
@@ -59,38 +59,60 @@ include CMakeFiles\SemPraca2.dir\progress.make
 include CMakeFiles\SemPraca2.dir\flags.make
 
 CMakeFiles\SemPraca2.dir\main.cpp.obj: CMakeFiles\SemPraca2.dir\flags.make
-CMakeFiles\SemPraca2.dir\main.cpp.obj: C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\main.cpp
+CMakeFiles\SemPraca2.dir\main.cpp.obj: C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation\main.cpp
 CMakeFiles\SemPraca2.dir\main.cpp.obj: CMakeFiles\SemPraca2.dir\compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/SemPraca2.dir/main.cpp.obj"
-	$(CMAKE_COMMAND) -E cmake_cl_compile_depends --dep-file=CMakeFiles\SemPraca2.dir\main.cpp.obj.d --working-dir=C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\cmake-build-debug --filter-prefix="Note: including file: " -- C:\PROGRA~1\MIB055~1\2022\COMMUN~1\VC\Tools\MSVC\1435~1.322\bin\Hostx64\x64\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /showIncludes /FoCMakeFiles\SemPraca2.dir\main.cpp.obj /FdCMakeFiles\SemPraca2.dir\ /FS -c C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/SemPraca2.dir/main.cpp.obj"
+	$(CMAKE_COMMAND) -E cmake_cl_compile_depends --dep-file=CMakeFiles\SemPraca2.dir\main.cpp.obj.d --working-dir=C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation\cmake-build-debug --filter-prefix="Note: including file: " -- C:\PROGRA~1\MIB055~1\2022\COMMUN~1\VC\Tools\MSVC\1435~1.322\bin\Hostx64\x64\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /showIncludes /FoCMakeFiles\SemPraca2.dir\main.cpp.obj /FdCMakeFiles\SemPraca2.dir\ /FS -c C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation\main.cpp
 <<
 
 CMakeFiles\SemPraca2.dir\main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/SemPraca2.dir/main.cpp.i"
 	C:\PROGRA~1\MIB055~1\2022\COMMUN~1\VC\Tools\MSVC\1435~1.322\bin\Hostx64\x64\cl.exe > CMakeFiles\SemPraca2.dir\main.cpp.i @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\main.cpp
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation\main.cpp
 <<
 
 CMakeFiles\SemPraca2.dir\main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SemPraca2.dir/main.cpp.s"
 	C:\PROGRA~1\MIB055~1\2022\COMMUN~1\VC\Tools\MSVC\1435~1.322\bin\Hostx64\x64\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\SemPraca2.dir\main.cpp.s /c C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\main.cpp
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\SemPraca2.dir\main.cpp.s /c C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation\main.cpp
+<<
+
+CMakeFiles\SemPraca2.dir\Bunka.cpp.obj: CMakeFiles\SemPraca2.dir\flags.make
+CMakeFiles\SemPraca2.dir\Bunka.cpp.obj: C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation\Bunka.cpp
+CMakeFiles\SemPraca2.dir\Bunka.cpp.obj: CMakeFiles\SemPraca2.dir\compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/SemPraca2.dir/Bunka.cpp.obj"
+	$(CMAKE_COMMAND) -E cmake_cl_compile_depends --dep-file=CMakeFiles\SemPraca2.dir\Bunka.cpp.obj.d --working-dir=C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation\cmake-build-debug --filter-prefix="Note: including file: " -- C:\PROGRA~1\MIB055~1\2022\COMMUN~1\VC\Tools\MSVC\1435~1.322\bin\Hostx64\x64\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /showIncludes /FoCMakeFiles\SemPraca2.dir\Bunka.cpp.obj /FdCMakeFiles\SemPraca2.dir\ /FS -c C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation\Bunka.cpp
+<<
+
+CMakeFiles\SemPraca2.dir\Bunka.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/SemPraca2.dir/Bunka.cpp.i"
+	C:\PROGRA~1\MIB055~1\2022\COMMUN~1\VC\Tools\MSVC\1435~1.322\bin\Hostx64\x64\cl.exe > CMakeFiles\SemPraca2.dir\Bunka.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation\Bunka.cpp
+<<
+
+CMakeFiles\SemPraca2.dir\Bunka.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SemPraca2.dir/Bunka.cpp.s"
+	C:\PROGRA~1\MIB055~1\2022\COMMUN~1\VC\Tools\MSVC\1435~1.322\bin\Hostx64\x64\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\SemPraca2.dir\Bunka.cpp.s /c C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation\Bunka.cpp
 <<
 
 # Object files for target SemPraca2
 SemPraca2_OBJECTS = \
-"CMakeFiles\SemPraca2.dir\main.cpp.obj"
+"CMakeFiles\SemPraca2.dir\main.cpp.obj" \
+"CMakeFiles\SemPraca2.dir\Bunka.cpp.obj"
 
 # External object files for target SemPraca2
 SemPraca2_EXTERNAL_OBJECTS =
 
 SemPraca2.exe: CMakeFiles\SemPraca2.dir\main.cpp.obj
+SemPraca2.exe: CMakeFiles\SemPraca2.dir\Bunka.cpp.obj
 SemPraca2.exe: CMakeFiles\SemPraca2.dir\build.make
 SemPraca2.exe: CMakeFiles\SemPraca2.dir\objects1.rsp
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable SemPraca2.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable SemPraca2.exe"
 	"C:\Program Files\JetBrains\CLion 2023.3\bin\cmake\win\x64\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\SemPraca2.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100190~1.0\x64\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100190~1.0\x64\mt.exe --manifests -- C:\PROGRA~1\MIB055~1\2022\COMMUN~1\VC\Tools\MSVC\1435~1.322\bin\Hostx64\x64\link.exe /nologo @CMakeFiles\SemPraca2.dir\objects1.rsp @<<
- /out:SemPraca2.exe /implib:SemPraca2.lib /pdb:C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\cmake-build-debug\SemPraca2.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
+ /out:SemPraca2.exe /implib:SemPraca2.lib /pdb:C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation\cmake-build-debug\SemPraca2.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
 <<
 
 # Rule to build all files generated by this target.
@@ -102,6 +124,6 @@ CMakeFiles\SemPraca2.dir\clean:
 .PHONY : CMakeFiles\SemPraca2.dir\clean
 
 CMakeFiles\SemPraca2.dir\depend:
-	$(CMAKE_COMMAND) -E cmake_depends "NMake Makefiles" C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\cmake-build-debug C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\cmake-build-debug C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\cmake-build-debug\CMakeFiles\SemPraca2.dir\DependInfo.cmake "--color=$(COLOR)"
+	$(CMAKE_COMMAND) -E cmake_depends "NMake Makefiles" C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation\cmake-build-debug C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation\cmake-build-debug C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation\cmake-build-debug\CMakeFiles\SemPraca2.dir\DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles\SemPraca2.dir\depend
 

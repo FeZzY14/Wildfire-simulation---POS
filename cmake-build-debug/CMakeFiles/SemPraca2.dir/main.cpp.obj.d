@@ -103,4 +103,5 @@ C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.3221
 C:/Program Files (x86)/Windows Kits/10/include/10.0.19041.0/ucrt/ctype.h
 C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/include/clocale
 C:/Program Files (x86)/Windows Kits/10/include/10.0.19041.0/ucrt/locale.h
-C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/PoziarnyBiotop.h
+C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation/PoziarnyBiotop.h
+C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation/Bunka.h

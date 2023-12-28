@@ -8,6 +8,6 @@ add_executable(SemPraca2 main.cpp
         Bunka.h
         Bunka.cpp
         Svet.h
-        Svet.h
         Svet.cpp
-        Svet.cpp)
+        Generator.h)
+

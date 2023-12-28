@@ -1,0 +1,189 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/JetBrains/CLion 2023.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineSystem.cmake:211 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.19045 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/JetBrains/CLion 2023.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/JetBrains/CLion 2023.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/JetBrains/CLion 2023.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/bin/Hostx64/x64/cl.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      Microsoft (R) C/C++ Optimizing Compiler Version 19.35.32216.1 for x64
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+      
+      CMakeCCompilerId.c
+      Microsoft (R) Incremental Linker Version 14.35.32216.1
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+      
+      /out:CMakeCCompilerId.exe 
+      CMakeCCompilerId.obj 
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.exe"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.obj"
+      
+      The C compiler identification is MSVC, found in:
+        C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/cmake-build-debug/CMakeFiles/3.27.0/CompilerIdC/CMakeCCompilerId.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/JetBrains/CLion 2023.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:1158 (message)"
+      - "C:/Program Files/JetBrains/CLion 2023.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:221 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "C:/Program Files/JetBrains/CLion 2023.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Detecting C compiler /showIncludes prefix:
+        main.c
+        Note: including file: C:\\Users\\spotk\\Desktop\\FRI\\5.semester\\PoS\\Wildfire-simulation---POS\\cmake-build-debug\\CMakeFiles\\ShowIncludes\\foo.h
+        
+      Found prefix "Note: including file: "
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/JetBrains/CLion 2023.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/JetBrains/CLion 2023.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/JetBrains/CLion 2023.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/bin/Hostx64/x64/cl.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      Microsoft (R) C/C++ Optimizing Compiler Version 19.35.32216.1 for x64
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+      
+      CMakeCXXCompilerId.cpp
+      Microsoft (R) Incremental Linker Version 14.35.32216.1
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+      
+      /out:CMakeCXXCompilerId.exe 
+      CMakeCXXCompilerId.obj 
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.obj"
+      
+      The CXX compiler identification is MSVC, found in:
+        C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/cmake-build-debug/CMakeFiles/3.27.0/CompilerIdCXX/CMakeCXXCompilerId.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/JetBrains/CLion 2023.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:1158 (message)"
+      - "C:/Program Files/JetBrains/CLion 2023.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:221 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "C:/Program Files/JetBrains/CLion 2023.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Detecting CXX compiler /showIncludes prefix:
+        main.c
+        Note: including file: C:\\Users\\spotk\\Desktop\\FRI\\5.semester\\PoS\\Wildfire-simulation---POS\\cmake-build-debug\\CMakeFiles\\ShowIncludes\\foo.h
+        
+      Found prefix "Note: including file: "
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/JetBrains/CLion 2023.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "C:/Program Files/JetBrains/CLion 2023.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-7p6z3y"
+      binary: "C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-7p6z3y"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-7p6z3y'
+        
+        Run Build Command(s): "C:/Program Files/JetBrains/CLion 2023.3/bin/cmake/win/x64/bin/cmake.exe" -E env VERBOSE=1 nmake -f Makefile /nologo cmTC_a3811\\fast
+        	"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.35.32215\\bin\\HostX64\\x64\\nmake.exe"  -f CMakeFiles\\cmTC_a3811.dir\\build.make /nologo -L                  CMakeFiles\\cmTC_a3811.dir\\build
+        Building C object CMakeFiles/cmTC_a3811.dir/CMakeCCompilerABI.c.obj
+        	"C:\\Program Files\\JetBrains\\CLion 2023.3\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E cmake_cl_compile_depends --dep-file=CMakeFiles\\cmTC_a3811.dir\\CMakeCCompilerABI.c.obj.d --working-dir=C:\\Users\\spotk\\Desktop\\FRI\\5.semester\\PoS\\Wildfire-simulation---POS\\cmake-build-debug\\CMakeFiles\\CMakeScratch\\TryCompile-7p6z3y --filter-prefix="Note: including file: " -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1435~1.322\\bin\\Hostx64\\x64\\cl.exe @C:\\Users\\spotk\\AppData\\Local\\Temp\\nmD69.tmp
+        CMakeCCompilerABI.c
+        Linking C executable cmTC_a3811.exe
+        	"C:\\Program Files\\JetBrains\\CLion 2023.3\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_a3811.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100190~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100190~1.0\\x64\\mt.exe --manifests -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1435~1.322\\bin\\Hostx64\\x64\\link.exe /nologo @CMakeFiles\\cmTC_a3811.dir\\objects1.rsp @C:\\Users\\spotk\\AppData\\Local\\Temp\\nmF00.tmp
+        Visual Studio Incremental Link with embedded manifests
+        Create CMakeFiles\\cmTC_a3811.dir/manifest.rc
+        Create empty: CMakeFiles\\cmTC_a3811.dir/embed.manifest
+        RC Pass 1:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100190~1.0\\x64\\rc.exe /fo CMakeFiles\\cmTC_a3811.dir/manifest.res CMakeFiles\\cmTC_a3811.dir/manifest.rc
+        LINK Pass 1:
+        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1435~1.322\\bin\\Hostx64\\x64\\link.exe /nologo @CMakeFiles\\cmTC_a3811.dir\\objects1.rsp /out:cmTC_a3811.exe /implib:cmTC_a3811.lib /pdb:C:\\Users\\spotk\\Desktop\\FRI\\5.semester\\PoS\\Wildfire-simulation---POS\\cmake-build-debug\\CMakeFiles\\CMakeScratch\\TryCompile-7p6z3y\\cmTC_a3811.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_a3811.dir/intermediate.manifest CMakeFiles\\cmTC_a3811.dir/manifest.res
+        MT:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100190~1.0\\x64\\mt.exe /nologo /manifest CMakeFiles\\cmTC_a3811.dir/intermediate.manifest /out:CMakeFiles\\cmTC_a3811.dir/embed.manifest /notify_update
+        RC Pass 2:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100190~1.0\\x64\\rc.exe /fo CMakeFiles\\cmTC_a3811.dir/manifest.res CMakeFiles\\cmTC_a3811.dir/manifest.rc
+        FINAL LINK:
+        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1435~1.322\\bin\\Hostx64\\x64\\link.exe /nologo @CMakeFiles\\cmTC_a3811.dir\\objects1.rsp /out:cmTC_a3811.exe /implib:cmTC_a3811.lib /pdb:C:\\Users\\spotk\\Desktop\\FRI\\5.semester\\PoS\\Wildfire-simulation---POS\\cmake-build-debug\\CMakeFiles\\CMakeScratch\\TryCompile-7p6z3y\\cmTC_a3811.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_a3811.dir/intermediate.manifest CMakeFiles\\cmTC_a3811.dir/manifest.res
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/JetBrains/CLion 2023.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "C:/Program Files/JetBrains/CLion 2023.3/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-npz0h2"
+      binary: "C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-npz0h2"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-npz0h2'
+        
+        Run Build Command(s): "C:/Program Files/JetBrains/CLion 2023.3/bin/cmake/win/x64/bin/cmake.exe" -E env VERBOSE=1 nmake -f Makefile /nologo cmTC_309f2\\fast
+        	"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.35.32215\\bin\\HostX64\\x64\\nmake.exe"  -f CMakeFiles\\cmTC_309f2.dir\\build.make /nologo -L                  CMakeFiles\\cmTC_309f2.dir\\build
+        Building CXX object CMakeFiles/cmTC_309f2.dir/CMakeCXXCompilerABI.cpp.obj
+        	"C:\\Program Files\\JetBrains\\CLion 2023.3\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E cmake_cl_compile_depends --dep-file=CMakeFiles\\cmTC_309f2.dir\\CMakeCXXCompilerABI.cpp.obj.d --working-dir=C:\\Users\\spotk\\Desktop\\FRI\\5.semester\\PoS\\Wildfire-simulation---POS\\cmake-build-debug\\CMakeFiles\\CMakeScratch\\TryCompile-npz0h2 --filter-prefix="Note: including file: " -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1435~1.322\\bin\\Hostx64\\x64\\cl.exe @C:\\Users\\spotk\\AppData\\Local\\Temp\\nm119F.tmp
+        CMakeCXXCompilerABI.cpp
+        Linking CXX executable cmTC_309f2.exe
+        	"C:\\Program Files\\JetBrains\\CLion 2023.3\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_309f2.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100190~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100190~1.0\\x64\\mt.exe --manifests -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1435~1.322\\bin\\Hostx64\\x64\\link.exe /nologo @CMakeFiles\\cmTC_309f2.dir\\objects1.rsp @C:\\Users\\spotk\\AppData\\Local\\Temp\\nm122D.tmp
+        Visual Studio Incremental Link with embedded manifests
+        Create CMakeFiles\\cmTC_309f2.dir/manifest.rc
+        Create empty: CMakeFiles\\cmTC_309f2.dir/embed.manifest
+        RC Pass 1:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100190~1.0\\x64\\rc.exe /fo CMakeFiles\\cmTC_309f2.dir/manifest.res CMakeFiles\\cmTC_309f2.dir/manifest.rc
+        LINK Pass 1:
+        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1435~1.322\\bin\\Hostx64\\x64\\link.exe /nologo @CMakeFiles\\cmTC_309f2.dir\\objects1.rsp /out:cmTC_309f2.exe /implib:cmTC_309f2.lib /pdb:C:\\Users\\spotk\\Desktop\\FRI\\5.semester\\PoS\\Wildfire-simulation---POS\\cmake-build-debug\\CMakeFiles\\CMakeScratch\\TryCompile-npz0h2\\cmTC_309f2.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_309f2.dir/intermediate.manifest CMakeFiles\\cmTC_309f2.dir/manifest.res
+        MT:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100190~1.0\\x64\\mt.exe /nologo /manifest CMakeFiles\\cmTC_309f2.dir/intermediate.manifest /out:CMakeFiles\\cmTC_309f2.dir/embed.manifest /notify_update
+        RC Pass 2:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100190~1.0\\x64\\rc.exe /fo CMakeFiles\\cmTC_309f2.dir/manifest.res CMakeFiles\\cmTC_309f2.dir/manifest.rc
+        FINAL LINK:
+        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1435~1.322\\bin\\Hostx64\\x64\\link.exe /nologo @CMakeFiles\\cmTC_309f2.dir\\objects1.rsp /out:cmTC_309f2.exe /implib:cmTC_309f2.lib /pdb:C:\\Users\\spotk\\Desktop\\FRI\\5.semester\\PoS\\Wildfire-simulation---POS\\cmake-build-debug\\CMakeFiles\\CMakeScratch\\TryCompile-npz0h2\\cmTC_309f2.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_309f2.dir/intermediate.manifest CMakeFiles\\cmTC_309f2.dir/manifest.res
+        
+      exitCode: 0
+...

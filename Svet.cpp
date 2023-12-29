@@ -5,12 +5,14 @@
 #include <vector>
 #include <iostream>
 #include <thread>
+#include <mutex>
 
 Svet::Svet(int sirka, int vyska) {
     this->sirka = sirka;
     this->vyska = vyska;
     this->vietor = generator.dajVietor();
     this->bunky.resize(this->vyska, std::vector<Bunka>(this->sirka));
+    this->pocetSimulacii = 0;
 }
 
 void Svet::vytvorSvet() {
@@ -39,10 +41,77 @@ void Svet::vypisSvet() {
 }
 
 void Svet::spusti() {
-    while(true){
+    int pocetOpakovani = 0;
+    while(pocetOpakovani < 100){
         this->vypisSvet();
+        this->sireniePoziaru();
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+        pocetOpakovani++;
     }
 }
 
+void Svet::sireniePoziaru() {
+    this->mutexPoziar.lock();
+    std::vector<std::vector<Bunka>> tempCopyOfBunky = this->bunky;
+    for (int i = 0; i < this->vyska; ++i) {
+        for (int j = 0; j < this->sirka; ++j) {
+            //najdenie bunky s poziarom
+            if (this->bunky[i][j].getBiotop() == PoziarBiotop::Poziar)
+            {
+                //kontrola ci su bunky vo Von Neumannovom okoli
+                for (int distanceI = -1; distanceI <= 1 ; ++distanceI) {
+                    for (int distanceJ = -1; distanceJ <= 1; ++distanceJ) {
+                        if (abs(distanceI) + abs(distanceJ) != 1)
+                        {
+                            //ak sa nenachadza -> preskoc
+                            continue;
+                        }
+
+                        int neighbourI = i + distanceI;
+                        int neighbourJ = j + distanceJ;
+
+                        if (neighbourI >= 0 && neighbourI < this->vyska &&
+                            neighbourJ >= 0 && neighbourJ < this->sirka)
+                        {
+                            //kontrola ci su susedne bunky Les a Luka(Biotopy, ktore budu horiet)
+                            if (this->bunky[neighbourI][neighbourJ].getBiotop() == PoziarBiotop::Les ||
+                                this->bunky[neighbourI][neighbourJ].getBiotop() == PoziarBiotop::Luka)
+                            {
+                                double pravdepodonost = 0.0;
+
+                                //kontrola ci je bezvetrie alebo je vietor s nejakym smerom
+                                if (this->vietor == Vietor::Bezvetrie)
+                                {
+                                    pravdepodonost = 0.2;
+                                } else if ((this->vietor == Vietor::Hore && distanceI == -1) || (this->vietor == Vietor::Dole && distanceI == 1) ||
+                                           (this->vietor == Vietor::Vpravo && distanceJ == 1) || (this->vietor == Vietor::Vlavo && distanceJ == -1))
+                                {
+                                    pravdepodonost = 0.9;
+                                } else {
+                                    pravdepodonost = 0.02;
+                                }
+                                double nahodneCislo = this->generator.dajNahodneCislo();
+                                //std::cout << nahodneCislo << std::endl;
+                                if (nahodneCislo <= pravdepodonost) {
+                                    tempCopyOfBunky[neighbourI][neighbourJ].setBiotop(PoziarBiotop::Poziar);
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    this->bunky = tempCopyOfBunky;
+
+    this->pocetSimulacii++;
+    if (pocetSimulacii >= 3 && this->vietor != Vietor::Bezvetrie) {
+        this->vietor = this->generator.dajSmerVetra();
+        this->pocetSimulacii = 0;
+    }
+    this->mutexPoziar.unlock();
+}
 
 

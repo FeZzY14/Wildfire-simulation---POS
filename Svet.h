@@ -9,11 +9,13 @@
 #include <vector>
 #include <cstdlib>
 #include "Generator.h"
+#include "Vietor.h"
 
 class Svet {
 private:
     int sirka;
     int vyska;
+    Vietor vietor;
     std::vector<std::vector<Bunka>> bunky;
     Generator generator;
 public:
@@ -21,6 +23,7 @@ public:
     void vytvorSvet();
     void vytvorPoziarRandomPosition();
     void vypisSvet();
+    void spusti();
 };
 
 

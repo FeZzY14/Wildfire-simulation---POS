@@ -4,18 +4,17 @@
 #include "Bunka.h"
 #include "Svet.h"
 
-struct nieco {
-    int data = 0;
-};
 
 int main() {
     Svet svet = Svet(20, 5);
     svet.vytvorSvet();
     svet.vytvorPoziarRandomPosition();
-    //svet.spusti();
-
-    nieco data;
-    std::thread(svet.spusti, &data);
+    std::thread vlakno(&Svet::spusti, &svet);
+    std::thread vlakno2(&Svet::spusti2, &svet);
+    std::thread vlakno3(&Svet::input, &svet);
+    vlakno.join();
+    vlakno2.join();
+    vlakno3.join();
 
     return 0;
 }

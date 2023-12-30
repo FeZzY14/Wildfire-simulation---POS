@@ -35,8 +35,8 @@ public:
     void sireniePoziaru();
     void regeneraciaBiotopu();
     void inputPause();
-    void ulozSvetDoSuboru();
     bool vOkoli(Bunka bunka, PoziarBiotop biotop);
+    void ulozSvetDoSuboru(const std::string& fileName);
 };
 
 

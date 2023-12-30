@@ -7,6 +7,7 @@
 #include <thread>
 #include <Windows.h>
 #include <string>
+#include <fstream>
 
 Svet::Svet(int sirka, int vyska) {
     this->sirka = sirka;
@@ -283,6 +284,20 @@ void Svet::sireniePoziaru() {
     }
 }
 
-void Svet::ulozSvetDoSuboru() {
+void Svet::ulozSvetDoSuboru(const std::string& fileName) {
 
+    std::ofstream subor(fileName);
+    if (!subor) {
+        std::cerr << "Nepodarilo sa otvorit subor na zapis." << std::endl;
+        return;
+    }
+
+    for (int i = 0; i < this->vyska; i++) {
+        for (int j = 0; j < this->sirka; j++) {
+            subor << std::to_string(bunky[i][j].getZnak()) << " ";
+        }
+        subor << "\n";
+    }
+
+    subor.close();
 }

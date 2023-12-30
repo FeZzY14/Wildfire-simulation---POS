@@ -15,6 +15,5 @@ int main() {
     vlakno.join();
     vlakno2.join();
     vlakno3.join();
-
     return 0;
 }

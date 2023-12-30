@@ -12,6 +12,7 @@
 #include <mutex>
 #include "Generator.h"
 #include "Vietor.h"
+#include <mutex>
 
 class Svet {
 private:
@@ -24,6 +25,8 @@ private:
     std::mutex mutex;
     std::condition_variable stop;
     bool pauza = false;
+    std::mutex mutexPoziar;
+    int pocetSimulacii;
 public:
     Svet(int sirka, int vyska);
     void vytvorSvet();
@@ -34,6 +37,8 @@ public:
     void sireniePoziaru();
     void regeneracia();
     void input();
+    void spusti();
+    void sireniePoziaru();
 };
 
 

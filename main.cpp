@@ -9,8 +9,8 @@ int main() {
     Svet svet = Svet(20, 5);
     svet.vytvorSvet();
     svet.vytvorPoziarRandomPosition();
-    std::thread vlakno(&Svet::spusti, &svet);
-    std::thread vlakno2(&Svet::spusti2, &svet);
+    std::thread vlakno(&Svet::spustiPoziar, &svet);
+    std::thread vlakno2(&Svet::spustiRegeneracia, &svet);
     std::thread vlakno3(&Svet::input, &svet);
     vlakno.join();
     vlakno2.join();

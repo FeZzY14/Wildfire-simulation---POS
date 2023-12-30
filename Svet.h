@@ -18,7 +18,7 @@ private:
     int sirka;
     int vyska;
     Vietor vietor;
-    int kolo;
+    int pocetSimulacii;
     std::vector<std::vector<Bunka>> bunky;
     Generator generator;
     std::mutex mutex;
@@ -29,8 +29,8 @@ public:
     void vytvorSvet();
     void vytvorPoziarRandomPosition();
     void vypisSvet();
-    void spusti();
-    void spusti2();
+    void spustiPoziar();
+    void spustiRegeneracia();
     void sireniePoziaru();
     void regeneracia();
     void input();

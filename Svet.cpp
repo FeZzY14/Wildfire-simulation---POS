@@ -6,11 +6,13 @@
 #include <iostream>
 #include <thread>
 #include <Windows.h>
+#include <string>
 
 Svet::Svet(int sirka, int vyska) {
     this->sirka = sirka;
     this->vyska = vyska;
-    this->kolo = 0;
+    this->pocetSimulacii = 0;
+    this->pauza = false;
     this->vietor = generator.dajVietor();
     this->bunky.resize(this->vyska, std::vector<Bunka>(this->sirka));
 }
@@ -41,10 +43,10 @@ void Svet::vypisSvet() {
 }
 
 
-void Svet::spusti() {
+void Svet::spustiPoziar() {
     while (true) {
         this->vypisSvet();
-        if (kolo % 3 == 0 && kolo > 0 && this->vietor != Vietor::Bezvetrie) {
+        if (pocetSimulacii % 3 == 0 && pocetSimulacii > 0 && this->vietor != Vietor::Bezvetrie) {
             this->vietor = generator.dajSmerVetra();
         }
         std::unique_lock<std::mutex> lock(this->mutex);
@@ -53,138 +55,26 @@ void Svet::spusti() {
         }
         this->sireniePoziaru();
         lock.unlock();
-        std::this_thread::sleep_for(std::chrono::seconds(1));
-        kolo++;
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+        pocetSimulacii++;
     }
 }
 
-void Svet::spusti2() {
+void Svet::spustiRegeneracia() {
     while (true) {
-        std::unique_lock<std::mutex> lock(this->mutex);
-        while (pauza) {
-            this->stop.wait(lock);
+        if (pocetSimulacii > 0) {
+            std::unique_lock<std::mutex> lock(this->mutex);
+            while (pauza) {
+                this->stop.wait(lock);
+            }
+            this->regeneracia();
+            lock.unlock();
+            std::this_thread::sleep_for(std::chrono::seconds(2));
         }
-        this->regeneracia();
-        lock.unlock();
-        std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 }
 
 void Svet::sireniePoziaru() {
-    std::vector<std::vector<Bunka>> tempBunky = this->bunky;
-    for (int i = 0; i < this->vyska; ++i) {
-        for (int j = 0; j < this->sirka; ++j) {
-            if (bunky[i][j].getBiotop() == PoziarBiotop::Poziar) {
-                switch (this->vietor) {
-                    case Vietor::Vlavo :
-                        if (generator.dajPravdepodobnost() <= 0.90) {
-                            if (j > 0) {
-                                if (bunky[i][j - 1].getBiotop() == PoziarBiotop::Luka ||
-                                    bunky[i][j - 1].getBiotop() == PoziarBiotop::Les) {
-                                    tempBunky[i][j - 1].setBiotop(PoziarBiotop::Poziar);
-                                }
-                            }
-                        }
-
-                        if (generator.dajPravdepodobnost() <= 0.02) {
-                            if (j < sirka - 1) {
-                                if (bunky[i][j + 1].getBiotop() == PoziarBiotop::Luka ||
-                                    bunky[i][j + 1].getBiotop() == PoziarBiotop::Les) {
-                                    tempBunky[i][j + 1].setBiotop(PoziarBiotop::Poziar);
-                                }
-                            }
-                        }
-                        break;
-                    case Vietor::Bezvetrie:
-                        if (generator.dajPravdepodobnost() <= 0.20) {
-                            if (j > 0) {
-                                if (bunky[i][j - 1].getBiotop() == PoziarBiotop::Luka ||
-                                    bunky[i][j - 1].getBiotop() == PoziarBiotop::Les) {
-                                    tempBunky[i][j - 1].setBiotop(PoziarBiotop::Poziar);
-                                }
-                            }
-                            if (j < sirka - 1) {
-                                if (bunky[i][j + 1].getBiotop() == PoziarBiotop::Luka ||
-                                    bunky[i][j + 1].getBiotop() == PoziarBiotop::Les) {
-                                    tempBunky[i][j + 1].setBiotop(PoziarBiotop::Poziar);
-                                }
-                            }
-                            if (i < vyska - 1) {
-                                if (bunky[i + 1][j].getBiotop() == PoziarBiotop::Luka ||
-                                    bunky[i + 1][j].getBiotop() == PoziarBiotop::Les) {
-                                    tempBunky[i + 1][j].setBiotop(PoziarBiotop::Poziar);
-                                }
-                            }
-                            if (i > 0) {
-                                if (bunky[i - 1][j].getBiotop() == PoziarBiotop::Luka ||
-                                    bunky[i - 1][j].getBiotop() == PoziarBiotop::Les) {
-                                    tempBunky[i - 1][j].setBiotop(PoziarBiotop::Poziar);
-                                }
-                            }
-                        }
-                        break;
-                    case Vietor::Hore:
-                        if (generator.dajPravdepodobnost() <= 0.90) {
-                            if (i > 0) {
-                                if (bunky[i - 1][j].getBiotop() == PoziarBiotop::Luka ||
-                                    bunky[i - 1][j].getBiotop() == PoziarBiotop::Les) {
-                                    tempBunky[i - 1][j].setBiotop(PoziarBiotop::Poziar);
-                                }
-                            }
-                        }
-
-                        if (generator.dajPravdepodobnost() <= 0.02) {
-                            if (i < vyska - 1) {
-                                if (bunky[i + 1][j].getBiotop() == PoziarBiotop::Luka ||
-                                    bunky[i + 1][j].getBiotop() == PoziarBiotop::Les) {
-                                    tempBunky[i + 1][j].setBiotop(PoziarBiotop::Poziar);
-                                }
-                            }
-                        }
-                        break;
-                    case Vietor::Dole:
-                        if (generator.dajPravdepodobnost() <= 0.90) {
-                            if (i < vyska - 1) {
-                                if (bunky[i + 1][j].getBiotop() == PoziarBiotop::Luka ||
-                                    bunky[i + 1][j].getBiotop() == PoziarBiotop::Les) {
-                                    tempBunky[i + 1][j].setBiotop(PoziarBiotop::Poziar);
-                                }
-                            }
-                        }
-
-                        if (generator.dajPravdepodobnost() <= 0.02) {
-                            if (i > 0) {
-                                if (bunky[i - 1][j].getBiotop() == PoziarBiotop::Luka ||
-                                    bunky[i - 1][j].getBiotop() == PoziarBiotop::Les) {
-                                    tempBunky[i - 1][j].setBiotop(PoziarBiotop::Poziar);
-                                }
-                            }
-                        }
-                        break;
-                    case Vietor::Vpravo:
-                        if (generator.dajPravdepodobnost() <= 0.90) {
-                            if (j < sirka - 1) {
-                                if (bunky[i][j + 1].getBiotop() == PoziarBiotop::Luka ||
-                                    bunky[i][j + 1].getBiotop() == PoziarBiotop::Les) {
-                                    tempBunky[i][j + 1].setBiotop(PoziarBiotop::Poziar);
-                                }
-                            }
-                        }
-
-                        if (generator.dajPravdepodobnost() <= 0.02) {
-                            if (j > 0) {
-                                if (bunky[i][j - 1].getBiotop() == PoziarBiotop::Luka ||
-                                    bunky[i][j - 1].getBiotop() == PoziarBiotop::Les) {
-                                    tempBunky[i][j - 1].setBiotop(PoziarBiotop::Poziar);
-                                }
-                            }
-                        }
-                        break;
-                }
-            }
-        }
-    }
-    this->bunky = tempBunky;
 }
 
 void Svet::regeneracia() {
@@ -192,57 +82,36 @@ void Svet::regeneracia() {
     for (int i = 0; i < this->vyska; ++i) {
         for (int j = 0; j < this->sirka; ++j) {
             if (bunky[i][j].getBiotop() == PoziarBiotop::Poziar) {
-                if (generator.dajPravdepodobnost() <= 0.10) {
-                    if (j > 0) {
-                        if (bunky[i][j - 1].getBiotop() == PoziarBiotop::Voda) {
-                            tempBunky[i][j].setBiotop(PoziarBiotop::Luka);
-                            std::cout << "zmena" << i << j << "\n";
-                        }
-                    }
-                    if (j < sirka - 1) {
-                        if (bunky[i][j + 1].getBiotop() == PoziarBiotop::Voda) {
-                            tempBunky[i][j].setBiotop(PoziarBiotop::Luka);
-                            std::cout << "zmena" << i << j << "\n";
-                        }
-                    }
-                    if (i < vyska - 1) {
-                        if (bunky[i + 1][j].getBiotop() == PoziarBiotop::Voda) {
-                            tempBunky[i][j].setBiotop(PoziarBiotop::Luka);
-                            std::cout << "zmena" << i << j << "\n";
-                        }
-                    }
-                    if (i > 0) {
-                        if (bunky[i - 1][j].getBiotop() == PoziarBiotop::Voda) {
-                            tempBunky[i][j].setBiotop(PoziarBiotop::Luka);
-                            std::cout << "zmena" << i << j << "\n";
-                        }
+                double prav = generator.dajPravdepodobnost();
+                if (prav <= 0.10) {
+                    if (j > 0 && bunky[i][j - 1].getBiotop() == PoziarBiotop::Voda) {
+                        tempBunky[i][j].setBiotop(PoziarBiotop::Luka);
+                        std::cout << "zmena luka" << prav << " " << i << j << "\n";
+                    } else if (j < sirka - 1 && bunky[i][j + 1].getBiotop() == PoziarBiotop::Voda) {
+                        tempBunky[i][j].setBiotop(PoziarBiotop::Luka);
+                        std::cout << "zmena luka" << prav << " "  << i << j << "\n";
+                    } else if (i < vyska - 1 && bunky[i + 1][j].getBiotop() == PoziarBiotop::Voda) {
+                        tempBunky[i][j].setBiotop(PoziarBiotop::Luka);
+                        std::cout << "zmena luka"  << prav << " " << i << j << "\n";
+                    } else if (i > 0 && bunky[i - 1][j].getBiotop() == PoziarBiotop::Voda) {
+                        tempBunky[i][j].setBiotop(PoziarBiotop::Luka);
+                        std::cout << "zmena luka" << prav << " "  << i << j << "\n";
                     }
                 }
             } else if (bunky[i][j].getBiotop() == PoziarBiotop::Luka) {
                 if (generator.dajPravdepodobnost() <= 0.02) {
-                    if (j > 0) {
-                        if (bunky[i][j - 1].getBiotop() == PoziarBiotop::Les) {
-                            tempBunky[i][j].setBiotop(PoziarBiotop::Les);
-                            std::cout << "zmena" << i << j << "\n";
-                        }
-                    }
-                    if (j < sirka - 1) {
-                        if (bunky[i][j + 1].getBiotop() == PoziarBiotop::Les) {
-                            tempBunky[i][j].setBiotop(PoziarBiotop::Les);
-                            std::cout << "zmena" << i << j << "\n";
-                        }
-                    }
-                    if (i < vyska - 1) {
-                        if (bunky[i + 1][j].getBiotop() == PoziarBiotop::Les) {
-                            tempBunky[i][j].setBiotop(PoziarBiotop::Les);
-                            std::cout << "zmena" << i << j << "\n";
-                        }
-                    }
-                    if (i > 0) {
-                        if (bunky[i - 1][j].getBiotop() == PoziarBiotop::Les) {
-                            tempBunky[i][j].setBiotop(PoziarBiotop::Les);
-                            std::cout << "zmena " << i << " " << j << "\n";
-                        }
+                    if (j > 0 && bunky[i][j - 1].getBiotop() == PoziarBiotop::Les) {
+                        tempBunky[i][j].setBiotop(PoziarBiotop::Les);
+                        std::cout << "zmena les" << i << j << "\n";
+                    } else if (j < sirka - 1 && bunky[i][j + 1].getBiotop() == PoziarBiotop::Les) {
+                        tempBunky[i][j].setBiotop(PoziarBiotop::Les);
+                        std::cout << "zmena les" << i << j << "\n";
+                    } else if (i < vyska - 1 && bunky[i + 1][j].getBiotop() == PoziarBiotop::Les) {
+                        tempBunky[i][j].setBiotop(PoziarBiotop::Les);
+                        std::cout << "zmena les" << i << j << "\n";
+                    } else if (i > 0 && bunky[i - 1][j].getBiotop() == PoziarBiotop::Les) {
+                        tempBunky[i][j].setBiotop(PoziarBiotop::Les);
+                        std::cout << "zmena les" << i << j << "\n";
                     }
                 }
             }
@@ -255,8 +124,67 @@ void Svet::input() {
     while (true) {
         if (GetKeyState('P') & 0x8000/*Check if high-order bit is set (1 << 15)*/) {
             if (!pauza) {
-                std::cout << "ZASTAVENE\n";
                 pauza = true;
+                std::this_thread::sleep_for(std::chrono::seconds(2));
+                do {
+                    std::cout << "pauza \npoziar : zalozenie poziaru na suradniciach\n";
+                    std::cout << "ulozLok : lokalne ulozenie do suboru\n";
+                    std::cout << "ulozServ : ulozenie na server\n";
+                    std::cout << "pokracuj : pokracovanie simulacie\n";
+                    std::string volba;
+                    do {
+                        std::cout << ">";
+                        std::cin >> volba;
+                        if (volba == "poziar") {
+                            std::cout << "zvolil si zalozenie\n";
+                            std::cout << "zadaj suradnicu x: \n";
+                            std::string surX;
+                            int surXInt;
+                            do {
+                                std::cout << ">";
+                                std::cin >> surX;
+                                try {
+                                    surXInt = std::stoi(surX);
+                                    if (surXInt < 0 || surXInt > this->sirka - 1) {
+                                        throw std::out_of_range("mimo pola");
+                                    }
+                                    std::cout << "vola: " << surX << "\n";
+                                    break;
+                                } catch (...) {
+                                    std::cout << "zla volba: \n";
+                                }
+                            } while (true);
+                            std::cout << "zadaj suradnicu y: \n";
+                            std::string surY;
+                            int surYInt;
+                            do {
+                                std::cout << ">";
+                                std::cin >> surY;
+                                try {
+                                    surYInt = std::stoi(surY);
+                                    if (surYInt < 0 || surYInt > this->vyska - 1) {
+                                        throw std::out_of_range("mimo pola");
+                                    }
+                                    std::cout << "vola: " << surY << "\n";
+                                    break;
+                                } catch (...) {
+                                    std::cout << "zla volba \n";
+                                }
+                            } while (true);
+                            this->bunky[surYInt][surXInt].setBiotop(PoziarBiotop::Poziar);
+                            break;
+                        } else if (volba == "pokracuj") {
+                            if (pauza) {
+                                std::cout << "SPUSTENE\n";
+                                pauza = false;
+                                stop.notify_all();
+                            }
+                            break;
+                        } else {
+                            std::cout << "zla volba!!\n";
+                        }
+                    } while (volba != "poziar" || volba != "ulozLok" || volba != "ulozServ");
+                } while (pauza);
             }
         }
 

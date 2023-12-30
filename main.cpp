@@ -6,7 +6,7 @@
 
 
 int main() {
-    Svet svet = Svet(10, 10);
+    Svet svet = Svet(20, 5);
     svet.vytvorSvet();
     svet.vytvorPoziarRandomPosition();
     std::thread svetThread(&Svet::spusti, &svet);

@@ -34,7 +34,7 @@ void Svet::vytvorPoziarRandomPosition() {
 }
 
 void Svet::vypisSvet() {
-    std::cout << "smer vetra: " << static_cast<char>(this->vietor) << "\n";
+    std::cout << "Smer vetra: " << static_cast<char>(this->vietor) << "\n";
     for (int i = 0; i < this->vyska; ++i) {
         for (int j = 0; j < this->sirka; ++j) {
             std::cout << this->bunky[i][j].getZnak() << " ";
@@ -46,158 +46,173 @@ void Svet::vypisSvet() {
 
 void Svet::spustiPoziar() {
     while (true) {
-        this->vypisSvet();
         if (pocetSimulacii % 3 == 0 && pocetSimulacii > 0 && this->vietor != Vietor::Bezvetrie) {
             this->vietor = generator.dajSmerVetra();
         }
+        std::this_thread::sleep_for(std::chrono::seconds(2));
         std::unique_lock<std::mutex> lock(this->mutex);
+        this->vypisSvet();
         while (pauza) {
             this->stop.wait(lock);
         }
         this->sireniePoziaru();
         lock.unlock();
-        std::this_thread::sleep_for(std::chrono::seconds(2));
         pocetSimulacii++;
     }
 }
 
-void Svet::spustiRegeneracia() {
+void Svet::spustiRegeneraciu() {
     while (true) {
         if (pocetSimulacii > 0) {
+            std::this_thread::sleep_for(std::chrono::seconds(1));
             std::unique_lock<std::mutex> lock(this->mutex);
             while (pauza) {
                 this->stop.wait(lock);
             }
-            this->regeneracia();
+            this->regeneraciaBiotopu();
             lock.unlock();
-            std::this_thread::sleep_for(std::chrono::seconds(2));
         }
     }
 }
-void Svet::regeneracia() {
+void Svet::regeneraciaBiotopu() {
     std::vector<std::vector<Bunka>> tempBunky = this->bunky;
+    std::vector<std::string> tempZmenaSpravy;
+    bool zmenaNaLuku = false;
+    bool zmenaNaLes = false;
     for (int i = 0; i < this->vyska; ++i) {
         for (int j = 0; j < this->sirka; ++j) {
             if (bunky[i][j].getBiotop() == PoziarBiotop::Poziar) {
                 double prav = generator.dajPravdepodobnost();
-                if (prav <= 0.10) {
+                if (prav <= 0.1) {
                     if (j > 0 && bunky[i][j - 1].getBiotop() == PoziarBiotop::Voda) {
                         tempBunky[i][j].setBiotop(PoziarBiotop::Luka);
-                        std::cout << "zmena luka" << prav << " " << i << j << "\n";
+                        zmenaNaLuku = true;
                     } else if (j < sirka - 1 && bunky[i][j + 1].getBiotop() == PoziarBiotop::Voda) {
                         tempBunky[i][j].setBiotop(PoziarBiotop::Luka);
-                        std::cout << "zmena luka" << prav << " "  << i << j << "\n";
+                        zmenaNaLuku = true;
                     } else if (i < vyska - 1 && bunky[i + 1][j].getBiotop() == PoziarBiotop::Voda) {
                         tempBunky[i][j].setBiotop(PoziarBiotop::Luka);
-                        std::cout << "zmena luka"  << prav << " " << i << j << "\n";
+                        zmenaNaLuku = true;
                     } else if (i > 0 && bunky[i - 1][j].getBiotop() == PoziarBiotop::Voda) {
                         tempBunky[i][j].setBiotop(PoziarBiotop::Luka);
-                        std::cout << "zmena luka" << prav << " "  << i << j << "\n";
+                        zmenaNaLuku = true;
+                    }
+                    if (zmenaNaLuku) {
+                        tempZmenaSpravy.push_back("Zhoreny biotop '#' sa zmenil na biotop '.' (Luka) na suradniciach: [" + std::to_string(i) + "; "
+                                                  + std::to_string(j) + "] s pravdepodbnostou: " + std::to_string(prav) + ".");
+                        zmenaNaLuku = false;
                     }
                 }
+
             } else if (bunky[i][j].getBiotop() == PoziarBiotop::Luka) {
-                if (generator.dajPravdepodobnost() <= 0.02) {
+                double pravdepodobnost = generator.dajPravdepodobnost();
+                if (pravdepodobnost <= 0.02) {
                     if (j > 0 && bunky[i][j - 1].getBiotop() == PoziarBiotop::Les) {
                         tempBunky[i][j].setBiotop(PoziarBiotop::Les);
-                        std::cout << "zmena les" << i << j << "\n";
+                        zmenaNaLes = true;
                     } else if (j < sirka - 1 && bunky[i][j + 1].getBiotop() == PoziarBiotop::Les) {
                         tempBunky[i][j].setBiotop(PoziarBiotop::Les);
-                        std::cout << "zmena les" << i << j << "\n";
+                        zmenaNaLes = true;
                     } else if (i < vyska - 1 && bunky[i + 1][j].getBiotop() == PoziarBiotop::Les) {
                         tempBunky[i][j].setBiotop(PoziarBiotop::Les);
-                        std::cout << "zmena les" << i << j << "\n";
+                        zmenaNaLes = true;
                     } else if (i > 0 && bunky[i - 1][j].getBiotop() == PoziarBiotop::Les) {
                         tempBunky[i][j].setBiotop(PoziarBiotop::Les);
-                        std::cout << "zmena les" << i << j << "\n";
+                        zmenaNaLes = true;
+                    }
+                    if (zmenaNaLes) {
+                        tempZmenaSpravy.push_back("Biotop '.' (Luka) sa zmenil na biotop 'T' (Les) na suradniciach: [" + std::to_string(i) + "; "
+                                                  + std::to_string(j) + "] s pravdepodbnostou: " + std::to_string(pravdepodobnost ) + ".");
+                        zmenaNaLes = false;
                     }
                 }
             }
         }
     }
-}
-void Svet::spusti() {  
-    int pocetOpakovani = 0;
-    while(pocetOpakovani < 15){
-        this->vypisSvet();
-        this->sireniePoziaru();
-        std::this_thread::sleep_for(std::chrono::seconds(2));
-        pocetOpakovani++;
-    }
     this->bunky = tempBunky;
+    for (const auto& message : tempZmenaSpravy) {
+        std::cout << message << "\n";
+    }
 }
-
-
-void Svet::input() {
+void Svet::inputPause() {
     while (true) {
-        if (GetKeyState('P') & 0x8000/*Check if high-order bit is set (1 << 15)*/) {
+        if (GetKeyState('P') & 0x8000) {
             if (!pauza) {
                 pauza = true;
                 std::this_thread::sleep_for(std::chrono::seconds(2));
                 do {
-                    std::cout << "pauza \npoziar : zalozenie poziaru na suradniciach\n";
-                    std::cout << "ulozLok : lokalne ulozenie do suboru\n";
-                    std::cout << "ulozServ : ulozenie na server\n";
-                    std::cout << "pokracuj : pokracovanie simulacie\n";
+                    std::cout << "---POZASTAVENA SIMULACIA--- \npoziar : Zaloz poziar na danych suradniciach\n";
+                    std::cout << "ulozLok : Lokalne uloz mapu sveta do suboru\n";
+                    std::cout << "ulozServ : Uloz mapu sveta na server\n";
+                    std::cout << "pokracuj : Pokracuj v simulacii\n";
+                    std::cout << "ukonci : Ukonci simulaciu(program)\n";
                     std::string volba;
                     do {
                         std::cout << ">";
                         std::cin >> volba;
                         if (volba == "poziar") {
-                            std::cout << "zvolil si zalozenie\n";
-                            std::cout << "zadaj suradnicu x: \n";
-                            std::string surX;
-                            int surXInt;
+                            std::cout << "Zvolili ste si zalozenie poziaru!\n";
+                            std::cout << "Zadajte prvu suradnicu (vysku): \n";
+                            std::string vyskaSuradnica;
+                            int surVyskaInt;
                             do {
-                                std::cout << ">";
-                                std::cin >> surX;
+                                std::cout << "> ";
+                                std::cin >> vyskaSuradnica;
+                                std::cout << std::endl;
                                 try {
-                                    surXInt = std::stoi(surX);
-                                    if (surXInt < 0 || surXInt > this->sirka - 1) {
-                                        throw std::out_of_range("mimo pola");
+                                    surVyskaInt = std::stoi(vyskaSuradnica);
+                                    if (surVyskaInt < 0 || surVyskaInt > this->vyska - 1) {
+                                        throw std::out_of_range("Mimo sveta");
                                     }
-                                    std::cout << "vola: " << surX << "\n";
+                                    std::cout << "Zadali ste: " << vyskaSuradnica << "\n";
                                     break;
                                 } catch (...) {
-                                    std::cout << "zla volba: \n";
+                                    std::cout << "Zla suradnica, zadali ste suradnicu mimo svet!! Zadajte znova! \n";
                                 }
                             } while (true);
-                            std::cout << "zadaj suradnicu y: \n";
-                            std::string surY;
-                            int surYInt;
+                            std::cout << "Zadajte druhu suradnicu (sirku): \n";
+                            std::string sirkaSuradnica;
+                            int surSirkaInt;
                             do {
-                                std::cout << ">";
-                                std::cin >> surY;
+                                std::cout << "> ";
+                                std::cin >> sirkaSuradnica;
+                                std::cout << std::endl;
                                 try {
-                                    surYInt = std::stoi(surY);
-                                    if (surYInt < 0 || surYInt > this->vyska - 1) {
-                                        throw std::out_of_range("mimo pola");
+                                    surSirkaInt = std::stoi(sirkaSuradnica);
+                                    if (surSirkaInt < 0 || surSirkaInt > this->sirka - 1) {
+                                        throw std::out_of_range("Mimo sveta");
                                     }
-                                    std::cout << "vola: " << surY << "\n";
+                                    std::cout << "Zadali ste: " << sirkaSuradnica << "\n";
                                     break;
                                 } catch (...) {
-                                    std::cout << "zla volba \n";
+                                    std::cout << "Zla suradnica, zadali ste suradnicu mimo svet!! Zadajte znova! \n";
                                 }
                             } while (true);
-                            this->bunky[surYInt][surXInt].setBiotop(PoziarBiotop::Poziar);
+                            std::cout << "Zalozili ste poziar na suradniciach [" << surVyskaInt << "; " << surSirkaInt << "]."<< "\n";
+                            this->bunky[surVyskaInt][surSirkaInt].setBiotop(PoziarBiotop::Poziar);
                             break;
                         } else if (volba == "pokracuj") {
                             if (pauza) {
-                                std::cout << "SPUSTENE\n";
+                                std::cout << "---SPUSTENA SIMULACIA---\n";
                                 pauza = false;
                                 stop.notify_all();
                             }
                             break;
+
+                        } else if (volba == "ukonci") {
+                            std::cout << "Ukoncili ste simulaciu(porgram)!!!\n---KONIEC PROGRAMU---" << std::endl;
+                            exit(0);
                         } else {
-                            std::cout << "zla volba!!\n";
+                            std::cout << "Zle zadana volba!! Zadajte znova!\n";
                         }
-                    } while (volba != "poziar" || volba != "ulozLok" || volba != "ulozServ");
+                    } while (volba != "poziar" || volba != "ulozLok" || volba != "ulozServ" || volba != "pokracuj" || volba != "ukonci");
                 } while (pauza);
             }
         }
 
-        if (GetKeyState('A') & 0x8000/*Check if high-order bit is set (1 << 15)*/) {
+        if (GetKeyState('A') & 0x8000) {
             if (pauza) {
-                std::cout << "SPUSTENE\n";
+                std::cout << "---SPUSTENA SIMULACIA---\n";
                 pauza = false;
                 stop.notify_all();
             }
@@ -206,7 +221,6 @@ void Svet::input() {
 }
 
 void Svet::sireniePoziaru() {
-    this->mutexPoziar.lock();
     std::vector<std::vector<Bunka>> tempCopyOfBunky = this->bunky;
     for (int i = 0; i < this->vyska; ++i) {
         for (int j = 0; j < this->sirka; ++j) {
@@ -275,9 +289,11 @@ void Svet::sireniePoziaru() {
     this->bunky = tempCopyOfBunky;
 
     this->pocetSimulacii++;
-    if (pocetSimulacii >= 3 && this->vietor != Vietor::Bezvetrie) {
-        this->vietor = this->generator.dajSmerVetra();
-        this->pocetSimulacii = 0;
+    if (pocetSimulacii % 3 == 0 && pocetSimulacii > 0 && this->vietor != Vietor::Bezvetrie) {
+        this->vietor = generator.dajSmerVetra();
     }
-    this->mutexPoziar.unlock();
+}
+
+void Svet::ulozSvetDoSuboru() {
+
 }

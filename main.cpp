@@ -9,11 +9,11 @@ int main() {
     Svet svet = Svet(20, 5);
     svet.vytvorSvet();
     svet.vytvorPoziarRandomPosition();
-    std::thread vlakno(&Svet::spustiPoziar, &svet);
-    std::thread vlakno2(&Svet::spustiRegeneracia, &svet);
-    std::thread vlakno3(&Svet::input, &svet);
-    vlakno.join();
-    vlakno2.join();
-    vlakno3.join();
+    std::thread threadSvet(&Svet::spustiPoziar, &svet);
+    std::thread threadRegeneration(&Svet::spustiRegeneraciu, &svet);
+    std::thread threadInputPause(&Svet::inputPause, &svet);
+    threadSvet.join();
+    threadRegeneration.join();
+    threadInputPause.join();
     return 0;
 }

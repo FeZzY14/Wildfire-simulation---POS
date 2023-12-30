@@ -25,20 +25,17 @@ private:
     std::mutex mutex;
     std::condition_variable stop;
     bool pauza = false;
-    std::mutex mutexPoziar;
-    int pocetSimulacii;
 public:
     Svet(int sirka, int vyska);
     void vytvorSvet();
     void vytvorPoziarRandomPosition();
     void vypisSvet();
     void spustiPoziar();
-    void spustiRegeneracia();
+    void spustiRegeneraciu();
     void sireniePoziaru();
-    void regeneracia();
-    void input();
-    void spusti();
-    void sireniePoziaru();
+    void regeneraciaBiotopu();
+    void inputPause();
+    void ulozSvetDoSuboru();
 };
 
 

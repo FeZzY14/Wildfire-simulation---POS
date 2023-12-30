@@ -36,6 +36,7 @@ public:
     void regeneraciaBiotopu();
     void inputPause();
     void ulozSvetDoSuboru();
+    bool vOkoli(Bunka bunka, PoziarBiotop biotop);
 };
 
 

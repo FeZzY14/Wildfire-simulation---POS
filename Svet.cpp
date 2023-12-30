@@ -22,7 +22,7 @@ void Svet::vytvorSvet() {
     for (int i = 0; i < this->vyska; i++) {
         for (int j = 0; j < this->sirka; j++) {
             PoziarBiotop biotop = this->generator.dajNahodnyBiotop();
-            bunky[i][j] = Bunka(i, j, biotop);
+            bunky[i][j] = Bunka(j, i, biotop);
         }
     }
 }
@@ -77,53 +77,25 @@ void Svet::spustiRegeneraciu() {
 void Svet::regeneraciaBiotopu() {
     std::vector<std::vector<Bunka>> tempBunky = this->bunky;
     std::vector<std::string> tempZmenaSpravy;
-    bool zmenaNaLuku = false;
-    bool zmenaNaLes = false;
     for (int i = 0; i < this->vyska; ++i) {
         for (int j = 0; j < this->sirka; ++j) {
             if (bunky[i][j].getBiotop() == PoziarBiotop::Poziar) {
                 double prav = generator.dajPravdepodobnost();
-                if (prav <= 0.1) {
-                    if (j > 0 && bunky[i][j - 1].getBiotop() == PoziarBiotop::Voda) {
+                if (prav <= 0.10) {
+                    if (this->vOkoli(bunky[i][j], PoziarBiotop::Voda)) {
                         tempBunky[i][j].setBiotop(PoziarBiotop::Luka);
-                        zmenaNaLuku = true;
-                    } else if (j < sirka - 1 && bunky[i][j + 1].getBiotop() == PoziarBiotop::Voda) {
-                        tempBunky[i][j].setBiotop(PoziarBiotop::Luka);
-                        zmenaNaLuku = true;
-                    } else if (i < vyska - 1 && bunky[i + 1][j].getBiotop() == PoziarBiotop::Voda) {
-                        tempBunky[i][j].setBiotop(PoziarBiotop::Luka);
-                        zmenaNaLuku = true;
-                    } else if (i > 0 && bunky[i - 1][j].getBiotop() == PoziarBiotop::Voda) {
-                        tempBunky[i][j].setBiotop(PoziarBiotop::Luka);
-                        zmenaNaLuku = true;
-                    }
-                    if (zmenaNaLuku) {
                         tempZmenaSpravy.push_back("Zhoreny biotop '#' sa zmenil na biotop '.' (Luka) na suradniciach: [" + std::to_string(i) + "; "
                                                   + std::to_string(j) + "] s pravdepodbnostou: " + std::to_string(prav) + ".");
-                        zmenaNaLuku = false;
                     }
                 }
 
             } else if (bunky[i][j].getBiotop() == PoziarBiotop::Luka) {
                 double pravdepodobnost = generator.dajPravdepodobnost();
                 if (pravdepodobnost <= 0.02) {
-                    if (j > 0 && bunky[i][j - 1].getBiotop() == PoziarBiotop::Les) {
+                    if (this->vOkoli(bunky[i][j], PoziarBiotop::Les)) {
                         tempBunky[i][j].setBiotop(PoziarBiotop::Les);
-                        zmenaNaLes = true;
-                    } else if (j < sirka - 1 && bunky[i][j + 1].getBiotop() == PoziarBiotop::Les) {
-                        tempBunky[i][j].setBiotop(PoziarBiotop::Les);
-                        zmenaNaLes = true;
-                    } else if (i < vyska - 1 && bunky[i + 1][j].getBiotop() == PoziarBiotop::Les) {
-                        tempBunky[i][j].setBiotop(PoziarBiotop::Les);
-                        zmenaNaLes = true;
-                    } else if (i > 0 && bunky[i - 1][j].getBiotop() == PoziarBiotop::Les) {
-                        tempBunky[i][j].setBiotop(PoziarBiotop::Les);
-                        zmenaNaLes = true;
-                    }
-                    if (zmenaNaLes) {
                         tempZmenaSpravy.push_back("Biotop '.' (Luka) sa zmenil na biotop 'T' (Les) na suradniciach: [" + std::to_string(i) + "; "
                                                   + std::to_string(j) + "] s pravdepodbnostou: " + std::to_string(pravdepodobnost ) + ".");
-                        zmenaNaLes = false;
                     }
                 }
             }
@@ -134,6 +106,23 @@ void Svet::regeneraciaBiotopu() {
         std::cout << message << "\n";
     }
 }
+
+bool Svet::vOkoli(Bunka bunka, PoziarBiotop biotop) {
+    int i = bunka.getY();
+    int j = bunka.getX();
+    if (j > 0 && bunky[i][j - 1].getBiotop() == biotop) {
+        return true;
+    } else if (j < sirka - 1 && bunky[i][j + 1].getBiotop() == biotop) {
+        return true;
+    } else if (i < vyska - 1 && bunky[i + 1][j].getBiotop() == biotop) {
+        return true;
+    } else if (i > 0 && bunky[i - 1][j].getBiotop() == biotop) {
+        return true;
+    }
+    return false;
+}
+
+
 void Svet::inputPause() {
     while (true) {
         if (GetKeyState('P') & 0x8000) {

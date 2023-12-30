@@ -1,3 +1,0 @@
-C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/cmake-build-debug/CMakeFiles/SemPraca2.dir
-C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/spotk/Desktop/FRI/5.semester/PoS/Wildfire-simulation---POS/cmake-build-debug/CMakeFiles/rebuild_cache.dir

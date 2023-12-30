@@ -5,7 +5,6 @@
 #include <vector>
 #include <iostream>
 #include <thread>
-#include <mutex>
 
 Svet::Svet(int sirka, int vyska) {
     this->sirka = sirka;
@@ -42,7 +41,7 @@ void Svet::vypisSvet() {
 
 void Svet::spusti() {
     int pocetOpakovani = 0;
-    while(pocetOpakovani < 100){
+    while(pocetOpakovani < 15){
         this->vypisSvet();
         this->sireniePoziaru();
         std::this_thread::sleep_for(std::chrono::seconds(2));
@@ -61,6 +60,7 @@ void Svet::sireniePoziaru() {
                 //kontrola ci su bunky vo Von Neumannovom okoli
                 for (int distanceI = -1; distanceI <= 1 ; ++distanceI) {
                     for (int distanceJ = -1; distanceJ <= 1; ++distanceJ) {
+                        //kontrola ci to nie je v uhlopriecke
                         if (abs(distanceI) + abs(distanceJ) != 1)
                         {
                             //ak sa nenachadza -> preskoc
@@ -90,9 +90,22 @@ void Svet::sireniePoziaru() {
                                 } else {
                                     pravdepodonost = 0.02;
                                 }
-                                double nahodneCislo = this->generator.dajNahodneCislo();
+                                double nahodneCislo = this->generator.dajPravdepodobnost();
                                 //std::cout << nahodneCislo << std::endl;
                                 if (nahodneCislo <= pravdepodonost) {
+                                    std::string nazovBiotopu = "";
+                                    if (static_cast<char>(tempCopyOfBunky[neighbourI][neighbourJ].getBiotop()) == 'T')
+                                    {
+                                        nazovBiotopu = "Les";
+                                    }
+                                    if (static_cast<char>(tempCopyOfBunky[neighbourI][neighbourJ].getBiotop()) == '.')
+                                    {
+                                        nazovBiotopu = "Luka";
+                                    }
+
+                                    std::cout << "Vypukol poziar v biotope: '" << static_cast<char>(tempCopyOfBunky[neighbourI][neighbourJ].getBiotop())
+                                    << "' (" << nazovBiotopu << ") na suradniciach [" << neighbourI << "; " << neighbourJ << "]" <<
+                                    " s pravdepodonostou: " << nahodneCislo << "." << std::endl;
                                     tempCopyOfBunky[neighbourI][neighbourJ].setBiotop(PoziarBiotop::Poziar);
                                 }
                             }

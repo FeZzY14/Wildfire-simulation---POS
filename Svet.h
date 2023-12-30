@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include "Generator.h"
 #include "Vietor.h"
+#include <mutex>
 
 class Svet {
 private:
@@ -18,12 +19,16 @@ private:
     Vietor vietor;
     std::vector<std::vector<Bunka>> bunky;
     Generator generator;
+    std::mutex mutexPoziar;
+    int pocetSimulacii;
 public:
     Svet(int sirka, int vyska);
     void vytvorSvet();
     void vytvorPoziarRandomPosition();
     void vypisSvet();
     void spusti();
+    void sireniePoziaru();
+
 };
 
 

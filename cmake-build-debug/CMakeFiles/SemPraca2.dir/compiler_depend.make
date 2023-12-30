@@ -131,6 +131,15 @@ CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files (x86)\Windows Kits\10\i
 CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\clocale"
 CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\locale.h"
 CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xbit_ops.h"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\Vietor.h
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\mutex"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\__msvc_chrono.hpp"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\ratio"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\thread"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\process.h"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\corecrt_startup.h"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\math.h"
+CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\vcruntime_startup.h"
 CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\iostream"
 CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\istream"
 CMakeFiles\SemPraca2.dir\Svet.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\ostream"
@@ -242,6 +251,13 @@ CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio
 CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\ctype.h"
 CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\clocale"
 CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\locale.h"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\thread"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\__msvc_chrono.hpp"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\ratio"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\process.h"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\corecrt_startup.h"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\math.h"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\vcruntime_startup.h"
 CMakeFiles\SemPraca2.dir\main.cpp.obj: C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\PoziarnyBiotop.h
 CMakeFiles\SemPraca2.dir\main.cpp.obj: C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\Bunka.h
 CMakeFiles\SemPraca2.dir\main.cpp.obj: C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\Svet.h
@@ -264,6 +280,8 @@ CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio
 CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\ammintrin.h"
 CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\algorithm"
 CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xbit_ops.h"
+CMakeFiles\SemPraca2.dir\main.cpp.obj: C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\Vietor.h
+CMakeFiles\SemPraca2.dir\main.cpp.obj: "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\mutex"
 
 
 
@@ -447,6 +465,8 @@ C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\Generator.h:
 
 "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\nmmintrin.h":
 
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\__msvc_chrono.hpp":
+
 "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\smmintrin.h":
 
 "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\tmmintrin.h":
@@ -499,6 +519,8 @@ C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\Generator.h:
 
 "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xlocale":
 
+"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\process.h":
+
 "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\memory":
 
 "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\typeinfo":
@@ -513,11 +535,23 @@ C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\Generator.h:
 
 "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\ctype.h":
 
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\ratio":
+
 "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\clocale":
 
 "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\locale.h":
 
 "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xbit_ops.h":
+
+C:\Users\spotk\Desktop\FRI\5.semester\PoS\Wildfire-simulation---POS\Vietor.h:
+
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\mutex":
+
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\thread":
+
+"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt\corecrt_startup.h":
+
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\vcruntime_startup.h":
 
 "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\iostream":
 

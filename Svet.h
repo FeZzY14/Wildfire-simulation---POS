@@ -35,7 +35,7 @@ public:
     void sireniePoziaru();
     void regeneraciaBiotopu();
     void inputPause();
-    void ulozSvetDoSuboru();
+    void ulozSvetDoSuboru(const std::string& fileName);
 };
 
 

@@ -8,6 +8,7 @@
 #include <Windows.h>
 #include <string>
 #include <fstream>
+#include <sys/stat.h>
 
 Svet::Svet(int sirka, int vyska) {
     this->sirka = sirka;
@@ -26,6 +27,10 @@ void Svet::vytvorSvet() {
             bunky[i][j] = Bunka(j, i, biotop);
         }
     }
+}
+
+void Svet::vytvorSvetSoSuboru(const std::string& nazovSuboru) {
+    //TODO nacitanie svetu zo suboru\
 }
 
 void Svet::vytvorPoziarRandomPosition() {
@@ -85,8 +90,12 @@ void Svet::regeneraciaBiotopu() {
                 if (prav <= 0.10) {
                     if (this->vOkoli(bunky[i][j], PoziarBiotop::Voda)) {
                         tempBunky[i][j].setBiotop(PoziarBiotop::Luka);
-                        tempZmenaSpravy.push_back("Zhoreny biotop '#' sa zmenil na biotop '.' (Luka) na suradniciach: [" + std::to_string(i) + "; "
-                                                  + std::to_string(j) + "] s pravdepodbnostou: " + std::to_string(prav) + ".");
+
+                        std::cout << "Zhoreny biotop '#' sa zmenil na biotop '.' (Luka) na suradniciach: [" << std::to_string(i) << "; "
+                                                  << std::to_string(j) << "] s pravdepodbnostou: " << std::to_string(prav) + ".\n";
+
+//                        tempZmenaSpravy.push_back("Zhoreny biotop '#' sa zmenil na biotop '.' (Luka) na suradniciach: [" + std::to_string(i) + "; "
+//                                                  + std::to_string(j) + "] s pravdepodbnostou: " + std::to_string(prav) + ".");
                     }
                 }
 
@@ -95,17 +104,21 @@ void Svet::regeneraciaBiotopu() {
                 if (pravdepodobnost <= 0.02) {
                     if (this->vOkoli(bunky[i][j], PoziarBiotop::Les)) {
                         tempBunky[i][j].setBiotop(PoziarBiotop::Les);
-                        tempZmenaSpravy.push_back("Biotop '.' (Luka) sa zmenil na biotop 'T' (Les) na suradniciach: [" + std::to_string(i) + "; "
-                                                  + std::to_string(j) + "] s pravdepodbnostou: " + std::to_string(pravdepodobnost ) + ".");
+
+                        std::cout << "Biotop '.' (Luka) sa zmenil na biotop 'T' (Les) na suradniciach: [" << std::to_string(i) << "; "
+                                                  << std::to_string(j) + "] s pravdepodbnostou: " << std::to_string(pravdepodobnost ) << ".\n";
+
+//                        tempZmenaSpravy.push_back("Biotop '.' (Luka) sa zmenil na biotop 'T' (Les) na suradniciach: [" + std::to_string(i) + "; "
+//                                                  + std::to_string(j) + "] s pravdepodbnostou: " + std::to_string(pravdepodobnost ) + ".");
                     }
                 }
             }
         }
     }
     this->bunky = tempBunky;
-    for (const auto& message : tempZmenaSpravy) {
-        std::cout << message << "\n";
-    }
+//    for (const auto& message : tempZmenaSpravy) {
+//        std::cout << message << "\n";
+//    }
 }
 
 bool Svet::vOkoli(Bunka bunka, PoziarBiotop biotop) {
@@ -130,8 +143,9 @@ void Svet::inputPause() {
             if (!pauza) {
                 pauza = true;
                 std::this_thread::sleep_for(std::chrono::seconds(2));
+                std::cout << "---POZASTAVENA SIMULACIA--- \n";
                 do {
-                    std::cout << "---POZASTAVENA SIMULACIA--- \npoziar : Zaloz poziar na danych suradniciach\n";
+                    std::cout << "poziar : Zaloz poziar na danych suradniciach\n";
                     std::cout << "ulozLok : Lokalne uloz mapu sveta do suboru\n";
                     std::cout << "ulozServ : Uloz mapu sveta na server\n";
                     std::cout << "pokracuj : Pokracuj v simulacii\n";
@@ -190,8 +204,47 @@ void Svet::inputPause() {
                             break;
 
                         } else if (volba == "ukonci") {
-                            std::cout << "Ukoncili ste simulaciu(porgram)!!!\n---KONIEC PROGRAMU---" << std::endl;
+                            std::cout << "Ukoncili ste simulaciu(program)!!!\n---KONIEC PROGRAMU---" << std::endl;
                             exit(0);
+                        } else if (volba == "ulozLok"){
+                            do {
+                                std::cout << "Zvolili ste si ulozenie svetu do suboru!\n";
+                                std::cout << "Zadajte nazov suboru (bez pripony): \n";
+                                std::string nazovSub;
+                                std::cout << ">";
+                                std::cin >> nazovSub;
+                                nazovSub += ".txt";
+                                struct stat buf{};
+                                if (stat(nazovSub.c_str(), &buf) != -1) {
+                                    std::string moznost;
+                                    do {
+                                        std::cout << "Subor uz existuje chcete ho prepisat? \n";
+                                        std::cout << "ano : subor bude prepisany \n";
+                                        std::cout << "nie : nevykona sa ziadna akcia\n";
+                                        std::cout << ">";
+                                        std::cin >> moznost;
+                                        if (moznost == "ano") {
+                                            this->ulozSvetDoSuboru(nazovSub);
+                                            std::cout << "subor bol uspesne prepisany!!\n";
+                                            std::cout << std::endl;
+                                            break;
+                                        } else if (moznost == "nie"){
+                                            break;
+                                        } else {
+                                            std::cout << "zla volba!!\n";
+                                        }
+                                    } while (moznost != "nie");
+                                    if (moznost == "ano"){
+                                        break;
+                                    }
+                                } else {
+                                    this->ulozSvetDoSuboru(nazovSub);
+                                    std::cout << "subor bol uspesne vytvoreny!!\n";
+                                    std::cout << std::endl;
+                                    break;
+                                }
+                            } while (true);
+                            break;
                         } else {
                             std::cout << "Zle zadana volba!! Zadajte znova!\n";
                         }
@@ -272,7 +325,6 @@ void Svet::sireniePoziaru() {
                         }
                     }
                 }
-
             }
         }
     }
@@ -284,20 +336,20 @@ void Svet::sireniePoziaru() {
     }
 }
 
-void Svet::ulozSvetDoSuboru(const std::string& fileName) {
+int Svet::ulozSvetDoSuboru(const std::string& fileName) {
 
-    std::ofstream subor(fileName);
+    std::ofstream subor(fileName, std::ofstream::out | std::ofstream::trunc);
     if (!subor) {
-        std::cerr << "Nepodarilo sa otvorit subor na zapis." << std::endl;
-        return;
+        return -1;
     }
 
     for (int i = 0; i < this->vyska; i++) {
         for (int j = 0; j < this->sirka; j++) {
-            subor << std::to_string(bunky[i][j].getZnak()) << " ";
+            subor << bunky[i][j].getZnak() << " ";
         }
         subor << "\n";
     }
 
     subor.close();
+    return 1;
 }

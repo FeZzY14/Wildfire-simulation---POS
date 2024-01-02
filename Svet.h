@@ -28,6 +28,7 @@ private:
 public:
     Svet(int sirka, int vyska);
     void vytvorSvet();
+    void vytvorSvetSoSuboru(const std::string& nazovSuboru);
     void vytvorPoziarRandomPosition();
     void vypisSvet();
     void spustiPoziar();
@@ -36,7 +37,7 @@ public:
     void regeneraciaBiotopu();
     void inputPause();
     bool vOkoli(Bunka bunka, PoziarBiotop biotop);
-    void ulozSvetDoSuboru(const std::string& fileName);
+    int ulozSvetDoSuboru(const std::string& fileName);
 };
 
 

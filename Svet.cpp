@@ -30,7 +30,7 @@ void Svet::vytvorSvet() {
 }
 
 void Svet::vytvorSvetSoSuboru(const std::string& nazovSuboru) {
-    //TODO nacitanie svetu zo suboru\
+    //TODO nacitanie svetu zo suboru
 }
 
 void Svet::vytvorPoziarRandomPosition() {

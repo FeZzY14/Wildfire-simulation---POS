@@ -35,26 +35,26 @@ public:
         serverAddr.sin_port = htons(port);
 
         if (inet_pton(AF_INET, serverIP, &serverAddr.sin_addr) <= 0) {
-            std::cerr << "Neplatná adresa servera" << std::endl;
+            std::cerr << "Neplatna adresa servera" << std::endl;
             closesocket(clientSocket);
             return false;
         }
 
         // Pripojenie k serveru
         if (connect(clientSocket, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) == -1) {
-            std::cerr << "Chyba pri pripájaní k serveru" << std::endl;
+            std::cerr << "Chyba pri pripajani k serveru" << std::endl;
             closesocket(clientSocket);
             return false;
         }
 
-        std::cout << "Pripojený k serveru" << std::endl;
+        std::cout << "Pripojeny k serveru" << std::endl;
         return true;
     }
 
     bool sendMessage(const char *message) {
         // Poslanie správy serveru
         if (send(clientSocket, message, strlen(message), 0) == -1) {
-            std::cerr << "Chyba pri odosielaní správy" << std::endl;
+            std::cerr << "Chyba pri odosielani spravy" << std::endl;
             closesocket(clientSocket);
             return false;
         }
@@ -64,7 +64,7 @@ public:
         // Prijímanie odpovede od servera
         int bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
         if (bytesReceived == -1) {
-            std::cerr << "Chyba pri prijímaní odpovede od servera" << std::endl;
+            std::cerr << "Chyba pri prijimani odpovede od servera" << std::endl;
             closesocket(clientSocket);
             return false;
         }

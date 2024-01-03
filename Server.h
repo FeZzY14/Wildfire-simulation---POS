@@ -40,19 +40,19 @@ public:
 
         // Pripojenie socketu na danú adresu a port
         if (bind(serverSocket, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) == -1) {
-            std::cerr << "Chyba pri bindovaní socketu" << std::endl;
+            std::cerr << "Chyba pri bindovani socketu" << std::endl;
             closesocket(serverSocket);
             return false;
         }
 
         // Počúvanie na sockete
         if (listen(serverSocket, 10) == -1) {
-            std::cerr << "Chyba pri počúvaní na sockete" << std::endl;
+            std::cerr << "Chyba pri pocuvani na sockete" << std::endl;
             closesocket(serverSocket);
             return false;
         }
 
-        std::cout << "Server čaká na pripojenie..." << std::endl;
+        std::cout << "Server caka na pripojenie..." << std::endl;
         return true;
     }
 
@@ -60,12 +60,12 @@ public:
         // Akceptovanie pripojenia
         clientSocket = accept(serverSocket, (struct sockaddr *)&clientAddr, &clientAddrLen);
         if (clientSocket == -1) {
-            std::cerr << "Chyba pri akceptovaní pripojenia" << std::endl;
+            std::cerr << "Chyba pri akceptovani pripojenia" << std::endl;
             closesocket(serverSocket);
             return false;
         }
 
-        std::cout << "Klient pripojený" << std::endl;
+        std::cout << "Klient pripojeny" << std::endl;
         return true;
     }
 
@@ -75,7 +75,7 @@ public:
         // Prijímanie správy od klienta
         int bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
         if (bytesReceived == -1) {
-            std::cerr << "Chyba pri prijímaní správy od klienta" << std::endl;
+            std::cerr << "Chyba pri prijimani spravy od klienta" << std::endl;
             closesocket(serverSocket);
             closesocket(clientSocket);
             return false;
@@ -84,12 +84,12 @@ public:
         std::string mapa = buffer;
         mapy.push_back(mapa);
 
-        std::cout << "Klient poslal správu:\n" << mapy[mapy.size() -1 ] << std::endl;
+        std::cout << "Klient poslal spravu:\n" << mapy[mapy.size() -1 ] << std::endl;
 
         // Odpovedanie klientovi
-        const char *response = "Správa prijatá!";
+        const char *response = "Sprava prijata!";
         if (send(clientSocket, response, strlen(response), 0) == -1) {
-            std::cerr << "Chyba pri odosielaní odpovede klientovi" << std::endl;
+            std::cerr << "Chyba pri odosielani odpovede klientovi" << std::endl;
             closesocket(serverSocket);
             closesocket(clientSocket);
             return false;
@@ -103,7 +103,7 @@ public:
         closesocket(clientSocket);
         closesocket(serverSocket);
         WSACleanup();
-        std::cout << "Ukoncene servera" << std::endl;
+        std::cout << "Ukoncenie servera" << std::endl;
     }
 
     void startServer(Server *server) {

@@ -18,6 +18,7 @@ private:
     struct sockaddr_in serverAddr;
     struct sockaddr_in clientAddr;
     socklen_t clientAddrLen;
+    std::vector<std::string> mapy;
 
 public:
     Server() : serverSocket(-1), clientSocket(-1), clientAddrLen(sizeof(clientAddr)) {}
@@ -69,8 +70,9 @@ public:
     }
 
     bool receiveMessage() {
+        // Pripravenie buffra pre prijímanie správ od klienta
         char buffer[1024] = {0};
-
+        // Prijímanie správy od klienta
         int bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
         if (bytesReceived == -1) {
             std::cerr << "Chyba pri prijimani spravy od klienta" << std::endl;
@@ -79,7 +81,10 @@ public:
             return false;
         }
 
-        std::cout << "Vytvorena mapa:\n" << buffer << std::endl;
+        std::string mapa = buffer;
+        mapy.push_back(mapa);
+
+        std::cout << "Klient poslal spravu:\n" << mapy[mapy.size() -1 ] << std::endl;
 
         // Odpovedanie klientovi
         const char *response = "Sprava prijata!";
@@ -98,12 +103,14 @@ public:
         closesocket(clientSocket);
         closesocket(serverSocket);
         WSACleanup();
-        std::cout << "Ukoncenie serveru" << std::endl;
+        std::cout << "Ukoncenie servera" << std::endl;
     }
 
     void startServer(Server *server) {
-        server->setup(8080);
-        server->acceptConnection();
+        while(true){
+            server->acceptConnection();
+            server->receiveMessage();
+        }
     }
 };
 

@@ -35,6 +35,4 @@ void Bunka::setBiotop(PoziarBiotop newBiotop) {
 
 Bunka::Bunka(int x, int y, PoziarBiotop biotop) :x(x), y(y), biotop(biotop) {}
 
-Bunka::Bunka() {
-
-}
+Bunka::Bunka() {}

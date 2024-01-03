@@ -2,8 +2,8 @@
 // Created by jmisa on 28. 12. 2023.
 //
 
-#ifndef SEMPRACA2_BUNKA_H
-#define SEMPRACA2_BUNKA_H
+#ifndef WildfiresimulationPOS_BUNKA_H
+#define WildfiresimulationPOS_BUNKA_H
 #include "PoziarnyBiotop.h"
 
 class Bunka {
@@ -24,5 +24,4 @@ public:
     void setBiotop(PoziarBiotop newBiotop);
 };
 
-
-#endif //SEMPRACA2_BUNKA_H
+#endif //WildfiresimulationPOS_BUNKA_H

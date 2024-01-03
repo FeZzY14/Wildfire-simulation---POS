@@ -1,21 +1,23 @@
 //
 // Created by spotk on 28. 12. 2023.
 //
+#include "Bunka.h"
 #include "Svet.h"
 #include <vector>
 #include <iostream>
 #include <thread>
-#include <Windows.h>
 #include <string>
 #include <fstream>
 #include <sys/stat.h>
-#include <sstream>
+#include <cstdio>
+#include <windows.h>
+
 
 Svet::Svet(int sirka, int vyska) {
     this->sirka = sirka;
     this->vyska = vyska;
-    this->pocetSimulacii = 0;
     this->pauza = false;
+    this->client = Client();
     this->vietor = generator.dajVietor();
     this->bunky.resize(this->vyska, std::vector<Bunka>(this->sirka));
     this->pocetSimulacii = 0;
@@ -25,91 +27,44 @@ void Svet::vytvorSvet() {
     for (int i = 0; i < this->vyska; i++) {
         for (int j = 0; j < this->sirka; j++) {
             PoziarBiotop biotop = this->generator.dajNahodnyBiotop();
-            bunky[i][j] = Bunka(j, i, biotop);
+            this->bunky[i][j] = Bunka(j, i, biotop);
         }
     }
 }
 
-int Svet::vytvorSvetSoSuboru(const std::string& nazovSuboru) {
-    std::ifstream subor(nazovSuboru);
-    if (!subor) {
-        return -1;
-    }
+void Svet::vytvorSvetZoSuboru(const std::string& nazovSuboru) {
+    std::ifstream subor;
+    subor.open(nazovSuboru);
 
-    std::vector<std::vector<Bunka>> tempBunky;
     std::string riadok;
-
-    // Načítanie smeru vetra z prvého riadku
-    if (std::getline(subor, riadok)) {
-        switch (riadok[0]) {
-            case '|':
-                this->vietor = Vietor::Bezvetrie;
-                break;
-            case '^':
-                this->vietor = Vietor::Hore;
-                break;
-            case 'v':
-                this->vietor = Vietor::Dole;
-                break;
-            case '<':
-                this->vietor = Vietor::Vlavo;
-                break;
-            case '>':
-                this->vietor = Vietor::Vpravo;
-                break;
-            default:
-                // Neznámy smer vetra, môžete pridať vlastnú logiku na spracovanie
-                break;
+    std::vector<std::string> svet;
+    int vyskaSvet = 0;
+    if (subor.is_open()) {
+        while (subor) {
+            std::getline(subor,riadok);
+            vyskaSvet++;
+            svet.push_back(riadok);
         }
     }
+    this->vyska = vyskaSvet - 2;
+    svet.pop_back();
+    this->sirka = svet[0].length();
+    this->bunky.resize(this->vyska, std::vector<Bunka>(this->sirka));
+    this->pocetSimulacii = 0;
 
-    int vyskaTemp = 0;
-    int sirkaTemp = 0;
-    while (std::getline(subor, riadok)) {
-        std::istringstream iss(riadok);
-        char znak;
-        std::vector<Bunka> tempRiadok;
-        int pocetStlpcov = 0;
-        while (iss >> znak) {
-            PoziarBiotop biotop;
-            switch (znak) {
-                case '~':
-                    biotop = PoziarBiotop::Voda;
-                    break;
-                case '.':
-                    biotop = PoziarBiotop::Luka;
-                    break;
-                case 'O':
-                    biotop = PoziarBiotop::Skala;
-                    break;
-                case 'T':
-                    biotop = PoziarBiotop::Les;
-                    break;
-                case '#':
-                    biotop = PoziarBiotop::Poziar;
-                    break;
-                default:
-                    // Neznámy znak, môžete pridať vlastnú logiku na spracovanie
-                    break;
-            }
-            tempRiadok.push_back(Bunka(pocetStlpcov, vyskaTemp, biotop));
-            pocetStlpcov++;
-        }
-        tempBunky.push_back(tempRiadok);
-        vyskaTemp++;
-        if (pocetStlpcov > sirkaTemp) {
-            sirkaTemp = pocetStlpcov;
+    for (int i = 0; i < this->vyska; i++) {
+        for (int j = 0; j < this->sirka; j++) {
+            PoziarBiotop biotop = this->dajBiotopZoZnaku(svet[i][j]);
+            bunky[i][j] = Bunka(j, i, biotop);
         }
     }
-
-    subor.close();
-
-    // Preloženie dát z dočasného vektora do pôvodného vektora
-    this->vyska = vyskaTemp;
-    this->sirka = sirkaTemp;
-    this->bunky = tempBunky;
-
-    return 1;
+    switch (svet[svet.size() - 1][0]) {
+        case '|': this->vietor = Vietor::Bezvetrie;break;
+        case '^': this->vietor = Vietor::Hore;break;
+        case 'v': this->vietor = Vietor::Dole;break;
+        case '<': this->vietor = Vietor::Vlavo;break;
+        case '>': this->vietor = Vietor::Vpravo;break;
+    }
 }
 
 void Svet::vytvorPoziarRandomPosition() {
@@ -226,6 +181,7 @@ void Svet::inputPause() {
                 do {
                     std::cout << "poziar : Zaloz poziar na danych suradniciach\n";
                     std::cout << "ulozLok : Lokalne uloz mapu sveta do suboru\n";
+                    std::cout << "nacitajLok : nacitaj mapu zo suboru a spusti novu simulaciu\n";
                     std::cout << "ulozServ : Uloz mapu sveta na server\n";
                     std::cout << "pokracuj : Pokracuj v simulacii\n";
                     std::cout << "ukonci : Ukonci simulaciu(program)\n";
@@ -298,28 +254,94 @@ void Svet::inputPause() {
                                     std::string moznost;
                                     do {
                                         std::cout << "Subor uz existuje chcete ho prepisat? \n";
-                                        std::cout << "ano : subor bude prepisany \n";
-                                        std::cout << "nie : nevykona sa ziadna akcia\n";
+                                        std::cout << "ano : Subor bude prepisany \n";
+                                        std::cout << "nie : Nevykona sa ziadna akcia\n";
                                         std::cout << ">";
                                         std::cin >> moznost;
                                         if (moznost == "ano") {
                                             this->ulozSvetDoSuboru(nazovSub);
-                                            std::cout << "subor bol uspesne prepisany!!\n";
+                                            if (this->ulozSvetDoSuboru(nazovSub) == -1) {
+                                                std::cerr << "Chyba pri vytvarani suboru!!\n";
+                                            } else {
+                                                std::cout << "Subor bol uspesne prepisany!!\n";
+                                                std::cout << std::endl;
+                                                break;
+                                            }
                                             std::cout << std::endl;
                                             break;
                                         } else if (moznost == "nie"){
                                             break;
                                         } else {
-                                            std::cout << "zla volba!!\n";
+                                            std::cout << "Zla volba!!\n";
                                         }
                                     } while (moznost != "nie");
                                     if (moznost == "ano"){
                                         break;
                                     }
                                 } else {
-                                    this->ulozSvetDoSuboru(nazovSub);
-                                    std::cout << "subor bol uspesne vytvoreny!!\n";
+                                    if (this->ulozSvetDoSuboru(nazovSub) == -1) {
+                                        std::cerr << "Chyba pri vytvarani suboru!!\n";
+                                    } else {
+                                        std::cout << "Subor bol uspesne vytvoreny!!\n";
+                                        std::cout << std::endl;
+                                        break;
+                                    }
+                                }
+                            } while (true);
+                            break;
+                        } else if (volba == "nacitajLok") {
+                            do {
+                                std::cout << "Zvolili ste si nacitanie svetu zo suboru!\n";
+                                std::cout << "Zadajte nazov suboru (bez pripony): \n";
+                                std::string nazovSub;
+                                std::cout << ">";
+                                std::cin >> nazovSub;
+                                nazovSub += ".txt";
+                                struct stat buf{};
+                                if (stat(nazovSub.c_str(), &buf) == -1) {
+                                    std::cout << "Subor neexistuje, zadajte iny subor!! \n";
+                                } else {
+                                    std::cout << "Subor bol uspesne nacitany\n";
+                                    this->vytvorSvetZoSuboru(nazovSub);
                                     std::cout << std::endl;
+                                    break;
+                                }
+                            } while (true);
+                            break;
+                        } else if (volba == "ulozServ"){
+                            do {
+                                std::cout << "Zvolili ste si ulozenie svetu na server!\n";
+                                std::cout << "Zadajte nazov svetu:\n";
+                                std::string nazovSub;
+                                std::cout << ">";
+                                std::cin >> nazovSub;
+                                nazovSub += "\n";
+                                std::this_thread::sleep_for(std::chrono::seconds(1));
+
+                                if (!this->client.connectToServer("127.0.0.1", 8080)) {
+                                    std::cerr << "Nastala chyba pri inicializácii klienta skuste to znovu" << std::endl;
+                                } else {
+                                    std::string mapaTemp;
+                                    mapaTemp += nazovSub;
+
+                                    for (int i = 0; i < this->vyska; ++i) {
+                                        for (int j = 0; j < this->sirka; ++j) {
+                                            mapaTemp += bunky[i][j].getZnak();
+                                        }
+                                        mapaTemp += '\n';
+                                    }
+                                    mapaTemp += this->dajZnakVetra(this->vietor);
+
+                                    const char *mapa = mapaTemp.c_str();
+
+                                    if (!this->client.sendMessage(mapa)) {
+                                        std::cerr << "Nastala chyba pri komunikácii s serverom skuste to znovu" << std::endl;
+                                    } else {
+                                        std::cout << "Subor bol uspesne ulozeny\n";
+                                        std::cout << std::endl;
+                                        client.closeConnection();
+                                        break;
+                                    }
                                     break;
                                 }
                             } while (true);
@@ -408,11 +430,6 @@ void Svet::sireniePoziaru() {
         }
     }
     this->bunky = tempCopyOfBunky;
-
-    this->pocetSimulacii++;
-    if (pocetSimulacii % 3 == 0 && pocetSimulacii > 0 && this->vietor != Vietor::Bezvetrie) {
-        this->vietor = generator.dajSmerVetra();
-    }
 }
 
 int Svet::ulozSvetDoSuboru(const std::string& fileName) {
@@ -422,90 +439,36 @@ int Svet::ulozSvetDoSuboru(const std::string& fileName) {
         return -1;
     }
 
-    switch (this->vietor) {
-        case Vietor::Bezvetrie:
-            subor << "|\n";
-            break;
-        case Vietor::Hore:
-            subor << "^\n";
-            break;
-        case Vietor::Dole:
-            subor << "v\n";
-            break;
-        case Vietor::Vlavo:
-            subor << "<\n";
-            break;
-        case Vietor::Vpravo:
-            subor << ">\n";
-            break;
-        default:
-            break;
-    }
-
     for (int i = 0; i < this->vyska; i++) {
         for (int j = 0; j < this->sirka; j++) {
-            subor << bunky[i][j].getZnak() << " ";
+            subor << bunky[i][j].getZnak();
         }
         subor << "\n";
     }
-
+    subor << this->dajZnakVetra(this->vietor);
     subor.close();
     return 1;
 }
 
-const char* Svet::svetToChars() {
-    std::string worldString = "";
-    switch (this->vietor) {
-        case Vietor::Bezvetrie:
-            worldString += "|";
-            break;
-        case Vietor::Hore:
-            worldString += "^";
-            break;
-        case Vietor::Dole:
-            worldString += "v";
-            break;
-        case Vietor::Vlavo:
-            worldString += "<";
-            break;
-        case Vietor::Vpravo:
-            worldString += ">";
-            break;
+PoziarBiotop Svet::dajBiotopZoZnaku(char znak) {
+    switch (znak) {
+        case 'T': return PoziarBiotop::Les;break;
+        case '.': return PoziarBiotop::Luka;break;
+        case 'O': return PoziarBiotop::Skala;break;
+        case '~': return PoziarBiotop::Voda;break;
+        case '#': return PoziarBiotop::Poziar;break;
     }
-    worldString += "\n";
-    for (int i = 0; i < this->vyska; i++) {
-        for (int j = 0; j < this->sirka; j++) {
-            PoziarBiotop biotop = bunky[i][j].getBiotop();
-            switch (biotop) {
-                case PoziarBiotop::Voda:
-                    worldString += "~ ";
-                    break;
-                case PoziarBiotop::Luka:
-                    worldString += ". ";
-                    break;
-                case PoziarBiotop::Skala:
-                    worldString += "O ";
-                    break;
-                case PoziarBiotop::Les:
-                    worldString += "T ";
-                    break;
-                case PoziarBiotop::Poziar:
-                    worldString += "# ";
-                    break;
-            }
-        }
-        worldString += "\n";
-    }
-    char *cstr = new char[worldString.length() + 1];
-    std::strcpy(cstr, worldString.c_str());
-    return cstr;
+    return PoziarBiotop::Poziar;
 }
 
-void Svet::resizeSvet(int newSirka, int newVyska) {
-    this->bunky.resize(newSirka, std::vector<Bunka>(newVyska));
+char Svet::dajZnakVetra(Vietor vietor) {
+    switch (vietor) {
+        case Vietor::Bezvetrie: return '|';break;
+        case Vietor::Hore: return '^';break;
+        case Vietor::Dole: return 'v';break;
+        case Vietor::Vlavo: return '<';break;
+        case Vietor::Vpravo: return '>';break;
+        default:return '-';break;
+    }
 }
-
-
-
-
 

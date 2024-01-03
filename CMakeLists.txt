@@ -15,3 +15,6 @@ add_executable(Wildfire-simulation---POS main.cpp
         Client.h)
 
 target_link_libraries(Wildfire-simulation---POS ws2_32.lib)
+
+
+

@@ -79,7 +79,7 @@ public:
             return false;
         }
 
-        std::cout << "Klient poslal spravu: " << buffer << std::endl;
+        std::cout << "Vytvorena mapa:\n" << buffer << std::endl;
 
         // Odpovedanie klientovi
         const char *response = "Sprava prijata!";
@@ -98,7 +98,7 @@ public:
         closesocket(clientSocket);
         closesocket(serverSocket);
         WSACleanup();
-        std::cout << "Ukoncenie servera" << std::endl;
+        std::cout << "Ukoncenie serveru" << std::endl;
     }
 
     void startServer(Server *server) {

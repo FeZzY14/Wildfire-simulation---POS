@@ -64,7 +64,7 @@ public:
         // Prijímanie odpovede od servera
         int bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
         if (bytesReceived == -1) {
-            std::cerr << "Chyba pri prijímani odpovede od servera" << std::endl;
+            std::cerr << "Chyba pri prijimani odpovede od servera" << std::endl;
             closesocket(clientSocket);
             return false;
         }

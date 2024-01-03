@@ -39,6 +39,8 @@ public:
     void inputPause();
     bool vOkoli(Bunka bunka, PoziarBiotop biotop);
     int ulozSvetDoSuboru(const std::string& fileName);
+    const char* svetToChars();
+    void resizeSvet(int newSirka, int newVyska);
 };
 
 

@@ -452,3 +452,60 @@ int Svet::ulozSvetDoSuboru(const std::string& fileName) {
     subor.close();
     return 1;
 }
+
+const char* Svet::svetToChars() {
+    std::string worldString = "";
+    switch (this->vietor) {
+        case Vietor::Bezvetrie:
+            worldString += "|";
+            break;
+        case Vietor::Hore:
+            worldString += "^";
+            break;
+        case Vietor::Dole:
+            worldString += "v";
+            break;
+        case Vietor::Vlavo:
+            worldString += "<";
+            break;
+        case Vietor::Vpravo:
+            worldString += ">";
+            break;
+    }
+    worldString += "\n";
+    for (int i = 0; i < this->vyska; i++) {
+        for (int j = 0; j < this->sirka; j++) {
+            PoziarBiotop biotop = bunky[i][j].getBiotop();
+            switch (biotop) {
+                case PoziarBiotop::Voda:
+                    worldString += "~ ";
+                    break;
+                case PoziarBiotop::Luka:
+                    worldString += ". ";
+                    break;
+                case PoziarBiotop::Skala:
+                    worldString += "O ";
+                    break;
+                case PoziarBiotop::Les:
+                    worldString += "T ";
+                    break;
+                case PoziarBiotop::Poziar:
+                    worldString += "# ";
+                    break;
+            }
+        }
+        worldString += "\n";
+    }
+    char *cstr = new char[worldString.length() + 1];
+    std::strcpy(cstr, worldString.c_str());
+    return cstr;
+}
+
+void Svet::resizeSvet(int newSirka, int newVyska) {
+    this->bunky.resize(newSirka, std::vector<Bunka>(newVyska));
+}
+
+
+
+
+

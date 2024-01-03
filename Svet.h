@@ -39,7 +39,7 @@ public:
     void inputPause();
     bool vOkoli(Bunka bunka, PoziarBiotop biotop);
     int ulozSvetDoSuboru(const std::string& fileName);
-    PoziarBiotop dajBiotomZoZnaku(char znak);
+    PoziarBiotop dajBiotopZoZnaku(char znak);
     char dajZnakVetra(Vietor vietor);
 };
 

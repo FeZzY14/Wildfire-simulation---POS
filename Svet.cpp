@@ -54,7 +54,7 @@ void Svet::vytvorSvetZoSuboru(const std::string& nazovSuboru) {
 
     for (int i = 0; i < this->vyska; i++) {
         for (int j = 0; j < this->sirka; j++) {
-            PoziarBiotop biotop = this->dajBiotomZoZnaku(svet[i][j]);
+            PoziarBiotop biotop = this->dajBiotopZoZnaku(svet[i][j]);
             bunky[i][j] = Bunka(j, i, biotop);
         }
     }
@@ -254,16 +254,16 @@ void Svet::inputPause() {
                                     std::string moznost;
                                     do {
                                         std::cout << "Subor uz existuje chcete ho prepisat? \n";
-                                        std::cout << "ano : subor bude prepisany \n";
-                                        std::cout << "nie : nevykona sa ziadna akcia\n";
+                                        std::cout << "ano : Subor bude prepisany \n";
+                                        std::cout << "nie : Nevykona sa ziadna akcia\n";
                                         std::cout << ">";
                                         std::cin >> moznost;
                                         if (moznost == "ano") {
                                             this->ulozSvetDoSuboru(nazovSub);
                                             if (this->ulozSvetDoSuboru(nazovSub) == -1) {
-                                                std::cerr << "chyba pri vytvarani suboru!!\n";
+                                                std::cerr << "Chyba pri vytvarani suboru!!\n";
                                             } else {
-                                                std::cout << "subor bol uspesne prepisany!!\n";
+                                                std::cout << "Subor bol uspesne prepisany!!\n";
                                                 std::cout << std::endl;
                                                 break;
                                             }
@@ -272,7 +272,7 @@ void Svet::inputPause() {
                                         } else if (moznost == "nie"){
                                             break;
                                         } else {
-                                            std::cout << "zla volba!!\n";
+                                            std::cout << "Zla volba!!\n";
                                         }
                                     } while (moznost != "nie");
                                     if (moznost == "ano"){
@@ -280,9 +280,9 @@ void Svet::inputPause() {
                                     }
                                 } else {
                                     if (this->ulozSvetDoSuboru(nazovSub) == -1) {
-                                        std::cerr << "chyba pri vytvarani suboru!!\n";
+                                        std::cerr << "Chyba pri vytvarani suboru!!\n";
                                     } else {
-                                        std::cout << "subor bol uspesne vytvoreny!!\n";
+                                        std::cout << "Subor bol uspesne vytvoreny!!\n";
                                         std::cout << std::endl;
                                         break;
                                     }
@@ -301,7 +301,7 @@ void Svet::inputPause() {
                                 if (stat(nazovSub.c_str(), &buf) == -1) {
                                     std::cout << "Subor neexistuje, zadajte iny subor!! \n";
                                 } else {
-                                    std::cout << "subor bol uspesne nacitany\n";
+                                    std::cout << "Subor bol uspesne nacitany\n";
                                     this->vytvorSvetZoSuboru(nazovSub);
                                     std::cout << std::endl;
                                     break;
@@ -337,7 +337,7 @@ void Svet::inputPause() {
                                     if (!this->client.sendMessage(mapa)) {
                                         std::cerr << "Nastala chyba pri komunikácii s serverom skuste to znovu" << std::endl;
                                     } else {
-                                        std::cout << "subor bol uspesne ulozny\n";
+                                        std::cout << "Subor bol uspesne ulozeny\n";
                                         std::cout << std::endl;
                                         client.closeConnection();
                                         break;
@@ -450,7 +450,7 @@ int Svet::ulozSvetDoSuboru(const std::string& fileName) {
     return 1;
 }
 
-PoziarBiotop Svet::dajBiotomZoZnaku(char znak) {
+PoziarBiotop Svet::dajBiotopZoZnaku(char znak) {
     switch (znak) {
         case 'T': return PoziarBiotop::Les;break;
         case '.': return PoziarBiotop::Luka;break;

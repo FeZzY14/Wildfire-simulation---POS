@@ -1,19 +1,21 @@
 //
 // Created by spotk on 28. 12. 2023.
 //
+#include "Bunka.h"
 #include "Svet.h"
 #include <vector>
 #include <iostream>
 #include <thread>
-#include <Windows.h>
 #include <string>
 #include <fstream>
 #include <sys/stat.h>
+#include <cstdio>
+#include <windows.h>
+
 
 Svet::Svet(int sirka, int vyska) {
     this->sirka = sirka;
     this->vyska = vyska;
-    this->pocetSimulacii = 0;
     this->pauza = false;
     this->vietor = generator.dajVietor();
     this->bunky.resize(this->vyska, std::vector<Bunka>(this->sirka));
@@ -24,13 +26,44 @@ void Svet::vytvorSvet() {
     for (int i = 0; i < this->vyska; i++) {
         for (int j = 0; j < this->sirka; j++) {
             PoziarBiotop biotop = this->generator.dajNahodnyBiotop();
-            bunky[i][j] = Bunka(j, i, biotop);
+            this->bunky[i][j] = Bunka(j, i, biotop);
         }
     }
 }
 
-void Svet::vytvorSvetSoSuboru(const std::string& nazovSuboru) {
-    //TODO nacitanie svetu zo suboru
+void Svet::vytvorSvetZoSuboru(const std::string& nazovSuboru) {
+    std::ifstream subor;
+    subor.open(nazovSuboru);
+
+    std::string riadok;
+    std::vector<std::string> svet;
+    int vyskaSvet = 0;
+    if (subor.is_open()) {
+        while (subor) {
+            std::getline(subor,riadok);
+            vyskaSvet++;
+            svet.push_back(riadok);
+        }
+    }
+    this->vyska = vyskaSvet - 2;
+    svet.pop_back();
+    this->sirka = svet[0].length();
+    this->bunky.resize(this->vyska, std::vector<Bunka>(this->sirka));
+    this->pocetSimulacii = 0;
+
+    for (int i = 0; i < this->vyska; i++) {
+        for (int j = 0; j < this->sirka; j++) {
+            PoziarBiotop biotop = this->dajBiotomZoZnaku(svet[i][j]);
+            bunky[i][j] = Bunka(j, i, biotop);
+        }
+    }
+    switch (svet[svet.size() - 1][0]) {
+        case '|': this->vietor = Vietor::Bezvetrie;break;
+        case '^': this->vietor = Vietor::Hore;break;
+        case 'v': this->vietor = Vietor::Dole;break;
+        case '<': this->vietor = Vietor::Vlavo;break;
+        case '>': this->vietor = Vietor::Vpravo;break;
+    }
 }
 
 void Svet::vytvorPoziarRandomPosition() {
@@ -147,6 +180,7 @@ void Svet::inputPause() {
                 do {
                     std::cout << "poziar : Zaloz poziar na danych suradniciach\n";
                     std::cout << "ulozLok : Lokalne uloz mapu sveta do suboru\n";
+                    std::cout << "nacitajLok : nacitaj mapu zo suboru a spusti novu simulaciu\n";
                     std::cout << "ulozServ : Uloz mapu sveta na server\n";
                     std::cout << "pokracuj : Pokracuj v simulacii\n";
                     std::cout << "ukonci : Ukonci simulaciu(program)\n";
@@ -225,7 +259,13 @@ void Svet::inputPause() {
                                         std::cin >> moznost;
                                         if (moznost == "ano") {
                                             this->ulozSvetDoSuboru(nazovSub);
-                                            std::cout << "subor bol uspesne prepisany!!\n";
+                                            if (this->ulozSvetDoSuboru(nazovSub) == -1) {
+                                                std::cerr << "chyba pri vytvarani suboru!!\n";
+                                            } else {
+                                                std::cout << "subor bol uspesne prepisany!!\n";
+                                                std::cout << std::endl;
+                                                break;
+                                            }
                                             std::cout << std::endl;
                                             break;
                                         } else if (moznost == "nie"){
@@ -238,8 +278,30 @@ void Svet::inputPause() {
                                         break;
                                     }
                                 } else {
-                                    this->ulozSvetDoSuboru(nazovSub);
-                                    std::cout << "subor bol uspesne vytvoreny!!\n";
+                                    if (this->ulozSvetDoSuboru(nazovSub) == -1) {
+                                        std::cerr << "chyba pri vytvarani suboru!!\n";
+                                    } else {
+                                        std::cout << "subor bol uspesne vytvoreny!!\n";
+                                        std::cout << std::endl;
+                                        break;
+                                    }
+                                }
+                            } while (true);
+                            break;
+                        } else if (volba == "nacitajLok") {
+                            do {
+                                std::cout << "Zvolili ste si nacitanie svetu zo suboru!\n";
+                                std::cout << "Zadajte nazov suboru (bez pripony): \n";
+                                std::string nazovSub;
+                                std::cout << ">";
+                                std::cin >> nazovSub;
+                                nazovSub += ".txt";
+                                struct stat buf{};
+                                if (stat(nazovSub.c_str(), &buf) == -1) {
+                                    std::cout << "Subor neexistuje, zadajte iny subor!! \n";
+                                } else {
+                                    std::cout << "subor bol uspesne nacitany\n";
+                                    this->vytvorSvetZoSuboru(nazovSub);
                                     std::cout << std::endl;
                                     break;
                                 }
@@ -329,11 +391,6 @@ void Svet::sireniePoziaru() {
         }
     }
     this->bunky = tempCopyOfBunky;
-
-    this->pocetSimulacii++;
-    if (pocetSimulacii % 3 == 0 && pocetSimulacii > 0 && this->vietor != Vietor::Bezvetrie) {
-        this->vietor = generator.dajSmerVetra();
-    }
 }
 
 int Svet::ulozSvetDoSuboru(const std::string& fileName) {
@@ -345,11 +402,34 @@ int Svet::ulozSvetDoSuboru(const std::string& fileName) {
 
     for (int i = 0; i < this->vyska; i++) {
         for (int j = 0; j < this->sirka; j++) {
-            subor << bunky[i][j].getZnak() << " ";
+            subor << bunky[i][j].getZnak();
         }
         subor << "\n";
     }
-
+    subor << this->dajZnakVetra(this->vietor);
     subor.close();
     return 1;
 }
+
+PoziarBiotop Svet::dajBiotomZoZnaku(char znak) {
+    switch (znak) {
+        case 'T': return PoziarBiotop::Les;break;
+        case '.': return PoziarBiotop::Luka;break;
+        case 'O': return PoziarBiotop::Skala;break;
+        case '~': return PoziarBiotop::Voda;break;
+        case '#': return PoziarBiotop::Poziar;break;
+    }
+    return PoziarBiotop::Poziar;
+}
+
+char Svet::dajZnakVetra(Vietor vietor) {
+    switch (vietor) {
+        case Vietor::Bezvetrie: return '|';break;
+        case Vietor::Hore: return '^';break;
+        case Vietor::Dole: return 'v';break;
+        case Vietor::Vlavo: return '<';break;
+        case Vietor::Vpravo: return '>';break;
+        default:return '-';break;
+    }
+}
+

@@ -10,5 +10,11 @@ add_executable(Wildfire-simulation---POS main.cpp
         Svet.h
         Svet.cpp
         Generator.h
-        Vietor.h)
+        Vietor.h
+        Server.h
+        Client.h)
+
+target_link_libraries(Wildfire-simulation---POS ws2_32.lib)
+
+
 

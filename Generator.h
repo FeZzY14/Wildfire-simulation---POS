@@ -2,9 +2,6 @@
 // Created by jmisa on 28. 12. 2023.
 //
 
-#ifndef SEMPRACA2_GENERATOR_H
-#define SEMPRACA2_GENERATOR_H
-
 
 #include <vector>
 #include <random>
@@ -68,4 +65,3 @@ public:
     }
 };
 
-#endif //SEMPRACA2_GENERATOR_H

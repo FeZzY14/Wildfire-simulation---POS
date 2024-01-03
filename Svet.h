@@ -2,9 +2,6 @@
 // Created by spotk on 28. 12. 2023.
 //
 
-#ifndef SEMPRACA2_SVET_H
-#define SEMPRACA2_SVET_H
-
 #include "Bunka.h"
 #include <vector>
 #include <cstdlib>
@@ -13,6 +10,7 @@
 #include "Generator.h"
 #include "Vietor.h"
 #include <mutex>
+#include <condition_variable>
 
 class Svet {
 private:
@@ -28,7 +26,7 @@ private:
 public:
     Svet(int sirka, int vyska);
     void vytvorSvet();
-    void vytvorSvetSoSuboru(const std::string& nazovSuboru);
+    void vytvorSvetZoSuboru(const std::string& nazovSuboru);
     void vytvorPoziarRandomPosition();
     void vypisSvet();
     void spustiPoziar();
@@ -38,7 +36,7 @@ public:
     void inputPause();
     bool vOkoli(Bunka bunka, PoziarBiotop biotop);
     int ulozSvetDoSuboru(const std::string& fileName);
+    PoziarBiotop dajBiotomZoZnaku(char znak);
+    char dajZnakVetra(Vietor vietor);
 };
 
-
-#endif //SEMPRACA2_SVET_H

@@ -12,6 +12,7 @@
 #include <mutex>
 #include "Generator.h"
 #include "Vietor.h"
+#include <condition_variable>
 #include <mutex>
 
 class Svet {

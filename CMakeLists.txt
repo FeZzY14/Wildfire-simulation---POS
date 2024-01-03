@@ -11,4 +11,3 @@ add_executable(Wildfire-simulation---POS main.cpp
         Svet.cpp
         Generator.h
         Vietor.h)
-

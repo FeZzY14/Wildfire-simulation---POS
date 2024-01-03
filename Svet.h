@@ -8,6 +8,8 @@
 #include "Bunka.h"
 #include <vector>
 #include <cstdlib>
+#include <thread>
+#include <mutex>
 #include "Generator.h"
 #include "Vietor.h"
 #include <mutex>
@@ -17,18 +19,25 @@ private:
     int sirka;
     int vyska;
     Vietor vietor;
+    int pocetSimulacii;
     std::vector<std::vector<Bunka>> bunky;
     Generator generator;
-    std::mutex mutexPoziar;
-    int pocetSimulacii;
+    std::mutex mutex;
+    std::condition_variable stop;
+    bool pauza = false;
 public:
     Svet(int sirka, int vyska);
     void vytvorSvet();
+    void vytvorSvetSoSuboru(const std::string& nazovSuboru);
     void vytvorPoziarRandomPosition();
     void vypisSvet();
-    void spusti();
+    void spustiPoziar();
+    void spustiRegeneraciu();
     void sireniePoziaru();
-
+    void regeneraciaBiotopu();
+    void inputPause();
+    bool vOkoli(Bunka bunka, PoziarBiotop biotop);
+    int ulozSvetDoSuboru(const std::string& fileName);
 };
 
 

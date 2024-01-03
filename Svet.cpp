@@ -17,6 +17,7 @@ Svet::Svet(int sirka, int vyska) {
     this->sirka = sirka;
     this->vyska = vyska;
     this->pauza = false;
+    this->client = Client();
     this->vietor = generator.dajVietor();
     this->bunky.resize(this->vyska, std::vector<Bunka>(this->sirka));
     this->pocetSimulacii = 0;
@@ -303,6 +304,44 @@ void Svet::inputPause() {
                                     std::cout << "subor bol uspesne nacitany\n";
                                     this->vytvorSvetZoSuboru(nazovSub);
                                     std::cout << std::endl;
+                                    break;
+                                }
+                            } while (true);
+                            break;
+                        } else if (volba == "ulozServ"){
+                            do {
+                                std::cout << "Zvolili ste si ulozenie svetu na server!\n";
+                                std::cout << "Zadajte nazov svetu:\n";
+                                std::string nazovSub;
+                                std::cout << ">";
+                                std::cin >> nazovSub;
+                                nazovSub += "\n";
+                                std::this_thread::sleep_for(std::chrono::seconds(1));
+
+                                if (!this->client.connectToServer("127.0.0.1", 8080)) {
+                                    std::cerr << "Nastala chyba pri inicializácii klienta skuste to znovu" << std::endl;
+                                } else {
+                                    std::string mapaTemp;
+                                    mapaTemp += nazovSub;
+
+                                    for (int i = 0; i < this->vyska; ++i) {
+                                        for (int j = 0; j < this->sirka; ++j) {
+                                            mapaTemp += bunky[i][j].getZnak();
+                                        }
+                                        mapaTemp += '\n';
+                                    }
+                                    mapaTemp += this->dajZnakVetra(this->vietor);
+
+                                    const char *mapa = mapaTemp.c_str();
+
+                                    if (!this->client.sendMessage(mapa)) {
+                                        std::cerr << "Nastala chyba pri komunikácii s serverom skuste to znovu" << std::endl;
+                                    } else {
+                                        std::cout << "subor bol uspesne ulozny\n";
+                                        std::cout << std::endl;
+                                        client.closeConnection();
+                                        break;
+                                    }
                                     break;
                                 }
                             } while (true);

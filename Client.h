@@ -21,8 +21,9 @@ public:
 
     bool connectToServer(const char *serverIP, int port) {
         // Vytvorenie socketu pre klienta
-        WSADATA Data;
-        WSAStartup(MAKEWORD(2, 2), &Data);
+        int wsaStatus;
+        WSADATA WSAData;
+        wsaStatus=WSAStartup(MAKEWORD(2, 0), &WSAData);
         clientSocket = socket(AF_INET, SOCK_STREAM, 0);
         if (clientSocket == -1) {
             std::cerr << "Chyba pri vytvarani socketu" << std::endl;
@@ -57,7 +58,6 @@ public:
             closesocket(clientSocket);
             return false;
         }
-
         // Pripravenie buffra pre prijímanie odpovede od servera
         char buffer[1024] = {0};
 

@@ -28,7 +28,7 @@ private:
 public:
     Svet(int sirka, int vyska);
     void vytvorSvet();
-    void vytvorSvetSoSuboru(const std::string& nazovSuboru);
+    int vytvorSvetSoSuboru(const std::string& nazovSuboru);
     void vytvorPoziarRandomPosition();
     void vypisSvet();
     void spustiPoziar();

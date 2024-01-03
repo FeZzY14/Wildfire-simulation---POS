@@ -9,6 +9,7 @@
 #include <string>
 #include <fstream>
 #include <sys/stat.h>
+#include <sstream>
 
 Svet::Svet(int sirka, int vyska) {
     this->sirka = sirka;
@@ -29,8 +30,86 @@ void Svet::vytvorSvet() {
     }
 }
 
-void Svet::vytvorSvetSoSuboru(const std::string& nazovSuboru) {
-    //TODO nacitanie svetu zo suboru
+int Svet::vytvorSvetSoSuboru(const std::string& nazovSuboru) {
+    std::ifstream subor(nazovSuboru);
+    if (!subor) {
+        return -1;
+    }
+
+    std::vector<std::vector<Bunka>> tempBunky;
+    std::string riadok;
+
+    // Načítanie smeru vetra z prvého riadku
+    if (std::getline(subor, riadok)) {
+        switch (riadok[0]) {
+            case '|':
+                this->vietor = Vietor::Bezvetrie;
+                break;
+            case '^':
+                this->vietor = Vietor::Hore;
+                break;
+            case 'v':
+                this->vietor = Vietor::Dole;
+                break;
+            case '<':
+                this->vietor = Vietor::Vlavo;
+                break;
+            case '>':
+                this->vietor = Vietor::Vpravo;
+                break;
+            default:
+                // Neznámy smer vetra, môžete pridať vlastnú logiku na spracovanie
+                break;
+        }
+    }
+
+    int vyskaTemp = 0;
+    int sirkaTemp = 0;
+    while (std::getline(subor, riadok)) {
+        std::istringstream iss(riadok);
+        char znak;
+        std::vector<Bunka> tempRiadok;
+        int pocetStlpcov = 0;
+        while (iss >> znak) {
+            PoziarBiotop biotop;
+            switch (znak) {
+                case '~':
+                    biotop = PoziarBiotop::Voda;
+                    break;
+                case '.':
+                    biotop = PoziarBiotop::Luka;
+                    break;
+                case 'O':
+                    biotop = PoziarBiotop::Skala;
+                    break;
+                case 'T':
+                    biotop = PoziarBiotop::Les;
+                    break;
+                case '#':
+                    biotop = PoziarBiotop::Poziar;
+                    break;
+                default:
+                    // Neznámy znak, môžete pridať vlastnú logiku na spracovanie
+                    break;
+            }
+            tempRiadok.push_back(Bunka(pocetStlpcov, vyskaTemp, biotop));
+            pocetStlpcov++;
+        }
+        tempBunky.push_back(tempRiadok);
+        vyskaTemp++;
+        if (pocetStlpcov > sirkaTemp) {
+            sirkaTemp = pocetStlpcov;
+        }
+    }
+
+    subor.close();
+
+    // Preloženie dát z dočasného vektora do pôvodného vektora
+    this->vyska = vyskaTemp;
+    this->sirka = sirkaTemp;
+    this->bunky = tempBunky;
+
+    return 1;
 }
 
 void Svet::vytvorPoziarRandomPosition() {
@@ -341,6 +420,26 @@ int Svet::ulozSvetDoSuboru(const std::string& fileName) {
     std::ofstream subor(fileName, std::ofstream::out | std::ofstream::trunc);
     if (!subor) {
         return -1;
+    }
+
+    switch (this->vietor) {
+        case Vietor::Bezvetrie:
+            subor << "|\n";
+            break;
+        case Vietor::Hore:
+            subor << "^\n";
+            break;
+        case Vietor::Dole:
+            subor << "v\n";
+            break;
+        case Vietor::Vlavo:
+            subor << "<\n";
+            break;
+        case Vietor::Vpravo:
+            subor << ">\n";
+            break;
+        default:
+            break;
     }
 
     for (int i = 0; i < this->vyska; i++) {

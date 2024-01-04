@@ -41,5 +41,7 @@ public:
     int ulozSvetDoSuboru(const std::string& fileName);
     PoziarBiotop dajBiotopZoZnaku(char znak);
     char dajZnakVetra(Vietor vietor);
+    void SvetUlozNaServer(const std::string &nazovSvetu);
+    int SvetJeNaServeri(const std::string &nazovSvetu);
 };
 

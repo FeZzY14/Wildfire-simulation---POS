@@ -309,41 +309,43 @@ void Svet::inputPause() {
                             } while (true);
                             break;
                         } else if (volba == "ulozServ"){
+                            std::cout << "Zvolili ste si ulozenie svetu na server!\n";
                             do {
-                                std::cout << "Zvolili ste si ulozenie svetu na server!\n";
                                 std::cout << "Zadajte nazov svetu:\n";
-                                std::string nazovSub;
+                                std::string nazovSvet;
                                 std::cout << ">";
-                                std::cin >> nazovSub;
-                                nazovSub += "\n";
-                                std::this_thread::sleep_for(std::chrono::seconds(1));
-
-                                if (!this->client.connectToServer("127.0.0.1", 8080)) {
-                                    std::cerr << "Nastala chyba pri inicializácii klienta skuste to znovu" << std::endl;
-                                } else {
-                                    std::string mapaTemp;
-                                    mapaTemp += nazovSub;
-
-                                    for (int i = 0; i < this->vyska; ++i) {
-                                        for (int j = 0; j < this->sirka; ++j) {
-                                            mapaTemp += bunky[i][j].getZnak();
-                                        }
-                                        mapaTemp += '\n';
-                                    }
-                                    mapaTemp += this->dajZnakVetra(this->vietor);
-
-                                    const char *mapa = mapaTemp.c_str();
-
-                                    if (!this->client.sendMessage(mapa)) {
-                                        std::cerr << "Nastala chyba pri komunikácii s serverom skuste to znovu" << std::endl;
-                                    } else {
-                                        std::cout << "Subor bol uspesne ulozeny\n";
-                                        std::cout << std::endl;
-                                        client.closeConnection();
-                                        break;
-                                    }
-                                    break;
+                                std::cin >> nazovSvet;
+                                if (this->SvetJeNaServeri(nazovSvet) == -1) {
+                                    std::cerr << "Chyba, taky nazov sveta existuje!!\n";
                                 }
+                                else {
+                                    if (!this->client.connectToServer("127.0.0.1", 8080)) {
+                                        std::cerr << "Nastala chyba pri inicializacii klienta skuste to znovu" << std::endl;
+                                    } else {
+                                        std::string mapaTemp;
+                                        mapaTemp += nazovSvet + "\n";
+
+                                        for (int i = 0; i < this->vyska; ++i) {
+                                            for (int j = 0; j < this->sirka; ++j) {
+                                                mapaTemp += bunky[i][j].getZnak();
+                                            }
+                                            mapaTemp += '\n';
+                                        }
+                                        mapaTemp += this->dajZnakVetra(this->vietor);
+
+                                        const char *mapa = mapaTemp.c_str();
+                                        if (!this->client.sendMessage(mapa)) {
+                                            std::cerr << "Nastala chyba pri komunikacii s serverom skuste to znovu" << std::endl;
+                                        } else {
+                                            this->SvetUlozNaServer(nazovSvet);
+                                            std::cout << "Svet bol uspesne ulozeny\n";
+                                            std::cout << std::endl;
+                                            client.closeConnection();
+                                            break;
+                                        }
+                                    }
+                                }
+
                             } while (true);
                             break;
                         } else {
@@ -472,3 +474,35 @@ char Svet::dajZnakVetra(Vietor vietor) {
     }
 }
 
+void Svet::SvetUlozNaServer(const std::string &nazovSvetu) {
+    std::ofstream subor("worldsServer.txt", std::ios::app);
+    if (!subor) {
+        std::cerr << "Nastala chyba pri otvarani suboru" << std::endl;
+        return;
+    }
+
+    subor << nazovSvetu << '\n';
+    for (int i = 0; i < this->vyska; ++i) {
+        for (int j = 0; j < this->sirka; ++j) {
+            subor << bunky[i][j].getZnak();
+        }
+        subor << '\n';
+    }
+    subor << this->dajZnakVetra(this->vietor);
+    subor << '\n';
+    subor << '@';
+    subor << '\n';
+    subor.close();
+}
+
+int Svet::SvetJeNaServeri(const std::string &nazovSvetu) {
+    std::ifstream citac("worldsServer.txt");
+    std::string riadok;
+    while (std::getline(citac, riadok)) {
+        if (riadok == nazovSvetu) {
+            return -1;
+        }
+    }
+    citac.close();
+    return 1;
+}

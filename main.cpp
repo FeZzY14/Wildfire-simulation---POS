@@ -43,7 +43,7 @@ int main() {
             if (stat(nazovSub.c_str(), &buf) == -1) {
                 std::cout << "Subor neexistuje, zadajte iny subor!! \n";
             } else {
-                std::cout << "subor bol uspesne nacitany\n";
+                std::cout << "Subor bol uspesne nacitany\n";
                 svet.vytvorSvetZoSuboru(nazovSub);
                 std::cout << std::endl;
                 break;

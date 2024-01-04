@@ -23,7 +23,6 @@ private:
     socklen_t clientAddrLen;
     std::vector<std::string> mapy;
     bool exit = false;
-    int i = 0;
 public:
     Server() : serverSocket(-1), clientSocket(-1), clientAddrLen(sizeof(clientAddr)) {}
 
@@ -225,16 +224,6 @@ public:
         std::cout << "Ukoncenie servera" << std::endl;
     }
 
-    void startServer(Server *server) {
-        while(!server->exit) {
-            server->acceptConnection();
-            bool check = server->receiveMessage();
-            if (!check) {
-                break;
-            }
-            server->i++;
-        }
-    }
 
     void setExit(bool exitPar) {
         this->exit = exitPar;

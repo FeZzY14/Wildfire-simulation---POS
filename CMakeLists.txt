@@ -10,6 +10,7 @@ add_executable(Wildfire-simulation---POS main.cpp
         Svet.h
         Svet.cpp
         Generator.h
+        Generator.cpp
         Vietor.h
         Server.h
         Client.h

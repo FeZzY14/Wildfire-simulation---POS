@@ -27,9 +27,8 @@ private:
     bool pauza = false;
     Client client;
     bool exit = false;
-    Server server;
 public:
-    Svet(int sirka, int vyska, Server *server);
+    Svet(int sirka, int vyska);
     void vytvorSvet();
     void vytvorSvetZoSuboru(const std::string& nazovSuboru);
     void vytvorPoziarRandomPosition();

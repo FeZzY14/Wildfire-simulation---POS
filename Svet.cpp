@@ -14,8 +14,7 @@
 #include <sstream>
 
 
-Svet::Svet(int sirka, int vyska, Server *server) {
-    this->server = *server;
+Svet::Svet(int sirka, int vyska) {
     this->sirka = sirka;
     this->vyska = vyska;
     this->pauza = false;
@@ -188,8 +187,6 @@ void Svet::regeneraciaBiotopu() {
                                   << std::to_string(i) << "; "
                                   << std::to_string(j) << "] s pravdepodbnostou: " << std::to_string(prav) + ".\n";
 
-//                        tempZmenaSpravy.push_back("Zhoreny biotop '#' sa zmenil na biotop '.' (Luka) na suradniciach: [" + std::to_string(i) + "; "
-//                                                  + std::to_string(j) + "] s pravdepodbnostou: " + std::to_string(prav) + ".");
                     }
                 }
 
@@ -203,18 +200,12 @@ void Svet::regeneraciaBiotopu() {
                                   << std::to_string(i) << "; "
                                   << std::to_string(j) + "] s pravdepodbnostou: " << std::to_string(pravdepodobnost)
                                   << ".\n";
-
-//                        tempZmenaSpravy.push_back("Biotop '.' (Luka) sa zmenil na biotop 'T' (Les) na suradniciach: [" + std::to_string(i) + "; "
-//                                                  + std::to_string(j) + "] s pravdepodbnostou: " + std::to_string(pravdepodobnost ) + ".");
                     }
                 }
             }
         }
     }
     this->bunky = tempBunky;
-//    for (const auto& message : tempZmenaSpravy) {
-//        std::cout << message << "\n";
-//    }
 }
 
 bool Svet::vOkoli(Bunka bunka, PoziarBiotop biotop) {
@@ -436,8 +427,6 @@ void Svet::inputPause() {
     } while (!exit);
     pauza = false;
     stop.notify_all();
-    server.setExit(true);
-    server.closeConnection();
 }
 
 void Svet::sireniePoziaru() {

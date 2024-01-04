@@ -10,6 +10,7 @@
 #include "Generator.h"
 #include "Vietor.h"
 #include "Client.h"
+#include "Server.h"
 #include <mutex>
 #include <condition_variable>
 
@@ -25,7 +26,7 @@ private:
     std::condition_variable stop;
     bool pauza = false;
     Client client;
-    bool connected = false;
+    bool exit = false;
 public:
     Svet(int sirka, int vyska);
     void vytvorSvet();
@@ -41,5 +42,7 @@ public:
     int ulozSvetDoSuboru(const std::string& fileName);
     PoziarBiotop dajBiotopZoZnaku(char znak);
     char dajZnakVetra(Vietor vietor);
+    void vytvorSvetZoStrinngu(const std::string &svetString);
+    void nacitanieSvetuZoServera();
 };
 

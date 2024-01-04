@@ -81,7 +81,7 @@ public:
         // Prijímanie správy od klienta
         int bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
         if (this->exit && bytesReceived == -1) {
-            //std::cerr << "ukoncenie serveraa" << std::endl;
+            //std::cerr << "ukoncenie servera" << std::endl;
             return false;
         } else if (bytesReceived == -1) {
             closesocket(serverSocket);

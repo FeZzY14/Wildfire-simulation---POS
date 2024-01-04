@@ -37,6 +37,10 @@ int main() {
             std::string nazovSub;
             std::cout << ">";
             std::cin >> nazovSub;
+            if (nazovSub == "worldsServer") {
+                std::cout << "Nazov 'worldsServer' nie je povoleny. Skuste iny nazov.\n";
+                continue;
+            }
             nazovSub += ".txt";
             struct stat buf{};
             if (stat(nazovSub.c_str(), &buf) == -1) {

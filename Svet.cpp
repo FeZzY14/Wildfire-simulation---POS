@@ -305,6 +305,10 @@ void Svet::inputPause() {
                                 std::string nazovSub;
                                 std::cout << ">";
                                 std::cin >> nazovSub;
+                                if (nazovSub == "worldsServer") {
+                                    std::cout << "Nazov 'worldsServer' nie je povoleny. Skuste iny nazov.\n";
+                                    continue;
+                                }
                                 nazovSub += ".txt";
                                 struct stat buf{};
                                 if (stat(nazovSub.c_str(), &buf) != -1) {
@@ -353,6 +357,10 @@ void Svet::inputPause() {
                                 std::string nazovSub;
                                 std::cout << ">";
                                 std::cin >> nazovSub;
+                                if (nazovSub == "worldsServer") {
+                                    std::cout << "Nazov 'worldsServer' nie je povoleny. Skuste iny nazov.\n";
+                                    continue;
+                                }
                                 nazovSub += ".txt";
                                 struct stat buf{};
                                 if (stat(nazovSub.c_str(), &buf) == -1) {
@@ -372,6 +380,10 @@ void Svet::inputPause() {
                                 std::string nazovSvet;
                                 std::cout << ">";
                                 std::cin >> nazovSvet;
+                                if (nazovSvet == "worldsServer") {
+                                    std::cout << "Nazov 'worldsServer' nie je povoleny. Skuste iny nazov.\n";
+                                    continue;
+                                }
                                 if (!this->client.connectToServer("127.0.0.1", 8080)) {
                                     std::cerr << "Nastala chyba pri inicializacii klienta skuste to znovu" << std::endl;
                                 } else {
@@ -562,6 +574,10 @@ void Svet::nacitanieSvetuZoServera() {
         std::string nazovSvet;
         std::cout << ">";
         std::cin >> nazovSvet;
+        if (nazovSvet == "worldsServer") {
+            std::cout << "Nazov 'worldsServer' nie je povoleny. Skuste iny nazov.\n";
+            continue;
+        }
         if (!this->client.connectToServer("127.0.0.1", 8080)) {
             std::cerr << "Nastala chyba pri inicializacii klienta skuste to znovu" << std::endl;
         } else {

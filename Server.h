@@ -22,7 +22,7 @@ private:
     socklen_t clientAddrLen;
     std::vector<std::string> mapy;
     bool exit = false;
-
+    int i = 0;
 public:
     Server() : serverSocket(-1), clientSocket(-1), clientAddrLen(sizeof(clientAddr)) {}
 
@@ -63,8 +63,10 @@ public:
     bool acceptConnection() {
         // Akceptovanie pripojenia
         clientSocket = accept(serverSocket, (struct sockaddr *)&clientAddr, &clientAddrLen);
-        if (clientSocket == -1) {
-            std::cerr << "Chyba pri akceptovani pripojenia" << std::endl;
+        if (clientSocket == -1 && this->exit) {
+            std::cerr << "ukoncenie serveraa" << std::endl;
+            return false;
+        } else if (clientSocket == -1) {
             closesocket(serverSocket);
             return false;
         }
@@ -78,8 +80,10 @@ public:
         char buffer[1024] = {0};
         // Prijímanie správy od klienta
         int bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
-        if (bytesReceived == -1) {
-            std::cerr << "Chyba pri prijimani spravy od klienta" << std::endl;
+        if (this->exit && bytesReceived == -1) {
+            std::cerr << "ukoncenie serveraa" << std::endl;
+            return false;
+        } else if (bytesReceived == -1) {
             closesocket(serverSocket);
             closesocket(clientSocket);
             return false;
@@ -213,7 +217,7 @@ public:
 
     void closeConnection() {
         // Uzavretie socketov
-        this->exit = true;
+        exit = true;
         closesocket(clientSocket);
         closesocket(serverSocket);
         WSACleanup();
@@ -221,14 +225,18 @@ public:
     }
 
     void startServer(Server *server) {
-        do {
+        while(!server->exit) {
             server->acceptConnection();
-            server->receiveMessage();
-        } while(!exit);
+            bool check = server->receiveMessage();
+            if (!check) {
+                break;
+            }
+            server->i++;
+        }
     }
 
-    void setExit(bool exit) {
-        this->exit = exit;
+    void setExit(bool exitPar) {
+        this->exit = exitPar;
     }
 };
 

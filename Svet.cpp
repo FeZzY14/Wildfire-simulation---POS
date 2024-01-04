@@ -14,8 +14,8 @@
 #include <sstream>
 
 
-Svet::Svet(int sirka, int vyska, Server &server) {
-    this->server = server;
+Svet::Svet(int sirka, int vyska, Server *server) {
+    this->server = *server;
     this->sirka = sirka;
     this->vyska = vyska;
     this->pauza = false;
@@ -48,18 +48,21 @@ void Svet::vytvorSvetZoSuboru(const std::string &nazovSuboru) {
             svet.push_back(riadok);
         }
     }
-    this->vyska = vyskaSvet - 2;
+    int vyskaTemp = vyskaSvet - 2;
     svet.pop_back();
-    this->sirka = svet[0].length();
-    this->bunky.resize(this->vyska, std::vector<Bunka>(this->sirka));
+    int sirkaTemp = svet[0].length();
+    this->bunky.clear();
+    this->bunky.resize(vyskaTemp, std::vector<Bunka>(sirkaTemp));
     this->pocetSimulacii = 0;
 
-    for (int i = 0; i < this->vyska; i++) {
-        for (int j = 0; j < this->sirka; j++) {
+    for (int i = 0; i < vyskaTemp; i++) {
+        for (int j = 0; j < sirkaTemp; j++) {
             PoziarBiotop biotop = this->dajBiotopZoZnaku(svet[i][j]);
             bunky[i][j] = Bunka(j, i, biotop);
         }
     }
+    this->vyska = vyskaTemp;
+    this->sirka = sirkaTemp;
     switch (svet[svet.size() - 1][0]) {
         case '|':
             this->vietor = Vietor::Bezvetrie;
@@ -92,6 +95,7 @@ void Svet::vytvorSvetZoStrinngu(const std::string &svetString) {
     }
     this->vyska = vyskaSvet - 2;
     this->sirka = svet[0].length();
+    this->bunky.clear();
     this->bunky.resize(this->vyska, std::vector<Bunka>(this->sirka));
     this->pocetSimulacii = 0;
 
@@ -300,6 +304,7 @@ void Svet::inputPause() {
 
                         } else if (volba == "ukonci") {
                             std::cout << "Ukoncili ste simulaciu(program)!!!\n---KONIEC PROGRAMU---" << std::endl;
+                            this->pauza = false;
                             this->exit = true;
                             break;
                         } else if (volba == "ulozLok") {
@@ -362,8 +367,8 @@ void Svet::inputPause() {
                                 if (stat(nazovSub.c_str(), &buf) == -1) {
                                     std::cout << "Subor neexistuje, zadajte iny subor!! \n";
                                 } else {
-                                    std::cout << "Subor bol uspesne nacitany\n";
                                     this->vytvorSvetZoSuboru(nazovSub);
+                                    std::cout << "Subor bol uspesne nacitany\n";
                                     std::cout << std::endl;
                                     break;
                                 }
@@ -400,12 +405,12 @@ void Svet::inputPause() {
                                         std::cout << std::endl;
                                         client.closeConnection();
                                     } else {
-                                        //this->SvetUlozNaServer(nazovSvet);
                                         std::cout << "Svet bol uspesne ulozeny\n";
                                         std::cout << std::endl;
                                         client.closeConnection();
                                         break;
                                     }
+                                    break;
                                 }
                             } while (true);
                             break;
@@ -416,8 +421,8 @@ void Svet::inputPause() {
                             std::cout << "Zle zadana volba!! Zadajte znova!\n";
                         }
                     } while (volba != "poziar" || volba != "ulozLok" || volba != "ulozServ" || volba != "pokracuj" ||
-                             volba != "ukonci");
-                } while (!pauza);
+                             volba != "ukonci" || volba != "nacitajLok" || volba != "nacitajServ");
+                } while(pauza);
             }
         }
 
@@ -431,6 +436,7 @@ void Svet::inputPause() {
     } while (!exit);
     pauza = false;
     stop.notify_all();
+    server.setExit(true);
     server.closeConnection();
 }
 
@@ -587,37 +593,4 @@ void Svet::nacitanieSvetuZoServera() {
             }
         }
     } while (true);
-}
-
-void Svet::SvetUlozNaServer(const std::string &nazovSvetu) {
-    std::ofstream subor("worldsServer.txt", std::ios::app);
-    if (!subor) {
-        std::cerr << "Nastala chyba pri otvarani suboru" << std::endl;
-        return;
-    }
-
-    subor << nazovSvetu << '\n';
-    for (int i = 0; i < this->vyska; ++i) {
-        for (int j = 0; j < this->sirka; ++j) {
-            subor << bunky[i][j].getZnak();
-        }
-        subor << '\n';
-    }
-    subor << this->dajZnakVetra(this->vietor);
-    subor << '\n';
-    subor << '@';
-    subor << '\n';
-    subor.close();
-}
-
-int Svet::SvetJeNaServeri(const std::string &nazovSvetu) {
-    std::ifstream citac("worldsServer.txt");
-    std::string riadok;
-    while (std::getline(citac, riadok)) {
-        if (riadok == nazovSvetu) {
-            return -1;
-        }
-    }
-    citac.close();
-    return 1;
 }

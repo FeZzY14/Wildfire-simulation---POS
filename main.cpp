@@ -29,7 +29,7 @@ int main() {
         std::cout << "Zadajte vysku sveta: ";
         std::cin >> vyska;
     }
-    Svet svet = Svet(sirka, vyska, server);
+    Svet svet = Svet(sirka, vyska, &server);
     if (choice == 2) {
         do {
             std::cout << "Zvolili ste si nacitanie svetu zo suboru!\n";

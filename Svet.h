@@ -29,7 +29,7 @@ private:
     bool exit = false;
     Server server;
 public:
-    Svet(int sirka, int vyska, Server &server);
+    Svet(int sirka, int vyska, Server *server);
     void vytvorSvet();
     void vytvorSvetZoSuboru(const std::string& nazovSuboru);
     void vytvorPoziarRandomPosition();
@@ -43,8 +43,6 @@ public:
     int ulozSvetDoSuboru(const std::string& fileName);
     PoziarBiotop dajBiotopZoZnaku(char znak);
     char dajZnakVetra(Vietor vietor);
-    void SvetUlozNaServer(const std::string &nazovSvetu);
-    int SvetJeNaServeri(const std::string &nazovSvetu);
     void vytvorSvetZoStrinngu(const std::string &svetString);
     void nacitanieSvetuZoServera();
 };

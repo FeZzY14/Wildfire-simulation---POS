@@ -15,6 +15,7 @@ class Client {
 private:
     SOCKET clientSocket;
     struct sockaddr_in serverAddr;
+    std::string svetTemp;
 
 public:
     Client() : clientSocket(-1) {}
@@ -51,12 +52,13 @@ public:
         return true;
     }
 
-    bool sendMessage(const char *message) {
+    int sendMessage(const char *message) {
+        this->svetTemp = "";
         // Poslanie správy serveru
         if (send(clientSocket, message, strlen(message), 0) == -1) {
             std::cerr << "Chyba pri odosielani spravy" << std::endl;
             closesocket(clientSocket);
-            return false;
+            return -1;
         }
         // Pripravenie buffra pre prijímanie odpovede od servera
         char buffer[1024] = {0};
@@ -66,12 +68,30 @@ public:
         if (bytesReceived == -1) {
             std::cerr << "Chyba pri prijimani odpovede od servera" << std::endl;
             closesocket(clientSocket);
-            return false;
+            return -1;
         }
 
         std::cout << "Server odpovedal: " << buffer << std::endl;
 
-        return true;
+        std::string odpoved(buffer);
+        if (odpoved == "subor existuje") {
+            return 0;
+        } else if (odpoved == "subor neexistuje") {
+            return -2;
+        } else if (odpoved != "Sprava prijata!") {
+            this->svetTemp = odpoved;
+            return 1;
+        }
+
+        return 1;
+    }
+
+    std::string vratSvet() {
+        if (this->svetTemp.empty()) {
+            return "chyba";
+        } else {
+            return this->svetTemp;
+        }
     }
 
     void closeConnection() {

@@ -29,8 +29,7 @@ int main() {
         std::cout << "Zadajte vysku sveta: ";
         std::cin >> vyska;
     }
-    Svet svet = Svet(sirka, vyska);
-
+    Svet svet = Svet(sirka, vyska, server);
     if (choice == 2) {
         do {
             std::cout << "Zvolili ste si nacitanie svetu zo suboru!\n";
@@ -49,6 +48,8 @@ int main() {
                 break;
             }
         } while (true);
+    } else if (choice == 3) {
+        svet.nacitanieSvetuZoServera();
     }
 
     std::cout << "======================================================" << std::endl;
@@ -65,6 +66,6 @@ int main() {
     threadRegeneration.join();
     threadInputPause.join();
 
-    //server.closeConnection();
+    server.closeConnection();
     return 0;
 }

@@ -10,7 +10,7 @@ int main() {
     // Inicializácia servera v samostatnom vlákne
     Server server;
     server.setup(8080);
-    std::thread serverThread(&Server::startServer, std::ref(server), &server);
+    //std::thread serverThread(&Server::startServer, std::ref(server), &server);
 
     std::cout << "======================================================" << std::endl;
     std::cout << " ---- MENU - Simulacia sirenia poziaru ---- " << std::endl;
@@ -61,7 +61,7 @@ int main() {
     std::thread threadSvet(&Svet::spustiPoziar, &svet);
     std::thread threadRegeneration(&Svet::spustiRegeneraciu, &svet);
     std::thread threadInputPause(&Svet::inputPause, &svet);
-    serverThread.join();
+    //serverThread.join();
     threadSvet.join();
     threadRegeneration.join();
     threadInputPause.join();

@@ -8,6 +8,7 @@
 #include <windows.h>
 #include <fstream>
 #include <sstream>
+#include <vector>
 
 #ifndef WILDFIRE_SIMULATION_POS_SERVER_H
 #define WILDFIRE_SIMULATION_POS_SERVER_H
@@ -64,7 +65,7 @@ public:
         // Akceptovanie pripojenia
         clientSocket = accept(serverSocket, (struct sockaddr *)&clientAddr, &clientAddrLen);
         if (clientSocket == -1 && this->exit) {
-            std::cerr << "ukoncenie serveraa" << std::endl;
+            //std::cerr << "ukoncenie serveraa" << std::endl;
             return false;
         } else if (clientSocket == -1) {
             closesocket(serverSocket);
@@ -81,7 +82,7 @@ public:
         // Prijímanie správy od klienta
         int bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
         if (this->exit && bytesReceived == -1) {
-            std::cerr << "ukoncenie serveraa" << std::endl;
+            //std::cerr << "ukoncenie serveraa" << std::endl;
             return false;
         } else if (bytesReceived == -1) {
             closesocket(serverSocket);
@@ -237,6 +238,10 @@ public:
 
     void setExit(bool exitPar) {
         this->exit = exitPar;
+    }
+
+    bool getExit() {
+        return this->exit;
     }
 };
 

@@ -7,22 +7,27 @@
 
 
 int main() {
-    std::cout << "======================================================" << std::endl;
-    std::cout << " ---- MENU - Simulacia sirenia poziaru ---- " << std::endl;
     int choice = 0;
-    std::cout << "Vyberte moznost:\n"
-              << "1. Nahodne vygenerovat svet\n"
-              << "2. Nacitat svet z lokalneho suboru\n"
-              << "3. Nacitat svet zo servera\n"
-              << "Vasa volba: ";
-    std::cin >> choice;
-
+    do {
+        std::cout << "======================================================" << std::endl;
+        std::cout << " ---- MENU - Simulacia sirenia poziaru ---- " << std::endl;
+        std::cout << "Vyberte moznost:\n"
+                  << "1. Nahodne vygenerovat svet\n"
+                  << "2. Nacitat svet z lokalneho suboru\n"
+                  << "3. Nacitat svet zo servera\n"
+                  << "Vasa volba: ";
+        std::cin >> choice;
+    } while(choice < 1 || choice > 3);
     int vyska = 0, sirka = 0;
     if (choice == 1) {
-        std::cout << "Zadajte sirku sveta: ";
-        std::cin >> sirka;
-        std::cout << "Zadajte vysku sveta: ";
-        std::cin >> vyska;
+        do {
+            std::cout << "Zadajte sirku sveta: ";
+            std::cin >> sirka;
+        } while(sirka < 4 || sirka > 30);
+        do {
+            std::cout << "Zadajte vysku sveta: ";
+            std::cin >> vyska;
+        } while(sirka < 4 || sirka > 30);
     }
     Svet svet = Svet(sirka, vyska);
     if (choice == 2) {

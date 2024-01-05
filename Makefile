@@ -4,16 +4,19 @@ CFLAGS = -std=c++11 -Wall
 all: server klient
 
 server: Server.o ServerMain.o
-	${CC} ${CFLAGS} ServerMain.o Server.o -o server -lpthread
+	$(CC) $(CFLAGS) ServerMain.o Server.o -o server -lpthread
 
-klient: client.o Bunka.o Bunka.o Generator.o Generator.o main.o PoziarnyBiotop.o Svet.o Svet.o Vietor.o
-	${CC} ${CFLAGS} client.o Bunka.o Bunka.o Generator.o Generator.o main.o PoziarnyBiotop.o Svet.o Svet.o Vietor.o -o klient -lpthread
+klient: Client.o Bunka.o main.o Svet.o PoziarnyBiotop.h Vietor.h Generator.h
+	$(CC) $(CFLAGS) Client.o Bunka.o main.o Svet.o -o klient -lpthread
 
-main.o: main.cpp
-	${CC} ${CFLAGS} -c main.cpp
+main.o: main.cpp PoziarnyBiotop.h Vietor.h Generator.h
+	$(CC) $(CFLAGS) -c main.cpp
 
-svet.o: svet.cpp svet.h
-	g++ -c Svet.cpp
+Bunka.o: Bunka.cpp Bunka.h PoziarnyBiotop.h Vietor.h Generator.h
+	$(CC) $(CFLAGS) -c Bunka.cpp
+
+Svet.o: Svet.cpp Svet.h PoziarnyBiotop.h Vietor.h Generator.h
+	$(CC) $(CFLAGS) -c Svet.cpp
 
 clean:
 	rm *.o server klient
